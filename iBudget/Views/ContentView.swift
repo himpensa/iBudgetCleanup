@@ -5,6 +5,17 @@ struct ContentView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
+            ListAccountsView()
+                .tabItem {
+                    Text("Accounts")
+                    Image(systemName: "questionmark.circle.fill")
+                }
+                .tag(0)
+            ListTransactionsView()
+                .tabItem {
+                    Image(systemName: "calendar")
+                }
+                .tag(3)
             ListCurrenciesView()
                 .tabItem {
                     Image(systemName: "dollarsign.circle")
@@ -23,11 +34,7 @@ struct ContentView: View {
                 }
                 .tag(2)
 
-            ListTransactionsView()
-                .tabItem {
-                    Image(systemName: "calendar")
-                }
-                .tag(3)
+           
             ListBudgetsView()
                 .tabItem {
                     Image(systemName: "questionmark.circle.fill")
@@ -35,12 +42,6 @@ struct ContentView: View {
                 .tag(4)
             ListTagsView()
                 .tabItem {
-                    Image(systemName: "questionmark.circle.fill")
-                }
-                .tag(5)
-            ListAccountsView()
-                .tabItem {
-                    Text("Accounts")
                     Image(systemName: "questionmark.circle.fill")
                 }
                 .tag(5)
