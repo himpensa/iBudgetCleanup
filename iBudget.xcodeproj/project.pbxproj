@@ -8,12 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		0A5800312B00059C00C44A88 /* iBudgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5800302B00059C00C44A88 /* iBudgetApp.swift */; };
-		0A5800332B00059C00C44A88 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5800322B00059C00C44A88 /* ContentView.swift */; };
 		0A5800352B00059E00C44A88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A5800342B00059E00C44A88 /* Assets.xcassets */; };
 		0A5800382B00059E00C44A88 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A5800372B00059E00C44A88 /* Preview Assets.xcassets */; };
 		0A5800422B00059E00C44A88 /* iBudgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5800412B00059E00C44A88 /* iBudgetTests.swift */; };
 		0A58004C2B00059E00C44A88 /* iBudgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A58004B2B00059E00C44A88 /* iBudgetUITests.swift */; };
 		0A58004E2B00059E00C44A88 /* iBudgetUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A58004D2B00059E00C44A88 /* iBudgetUITestsLaunchTests.swift */; };
+		0A5800772B00111F00C44A88 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A58006F2B00111F00C44A88 /* Currency.swift */; };
+		0A5800782B00111F00C44A88 /* Payee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5800702B00111F00C44A88 /* Payee.swift */; };
+		0A5800792B00111F00C44A88 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5800712B00111F00C44A88 /* Category.swift */; };
+		0A58007A2B00111F00C44A88 /* Budget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5800722B00111F00C44A88 /* Budget.swift */; };
+		0A58007B2B00111F00C44A88 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5800732B00111F00C44A88 /* Transaction.swift */; };
+		0A58007C2B00111F00C44A88 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5800742B00111F00C44A88 /* Tag.swift */; };
+		0A58007D2B00111F00C44A88 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5800752B00111F00C44A88 /* Account.swift */; };
+		0A8BE7DE2B1B23F6004A2B00 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7DD2B1B23F6004A2B00 /* ContentView.swift */; };
+		0A8BE7E02B1B26A8004A2B00 /* EditCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7DF2B1B26A8004A2B00 /* EditCategoryView.swift */; };
+		0A8BE7E22B1B2B22004A2B00 /* ListCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7E12B1B2B22004A2B00 /* ListCategoriesView.swift */; };
+		0A8BE7E42B1BB543004A2B00 /* EditTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7E32B1BB543004A2B00 /* EditTransactionView.swift */; };
+		0A8BE7E62B1BB552004A2B00 /* ListTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7E52B1BB552004A2B00 /* ListTransactionsView.swift */; };
+		0A8BE7E82B1CEB5F004A2B00 /* ListCurrenciesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7E72B1CEB5F004A2B00 /* ListCurrenciesView.swift */; };
+		0A8BE7EA2B1CEC6E004A2B00 /* EditCurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7E92B1CEC6E004A2B00 /* EditCurrencyView.swift */; };
+		0A8BE7EC2B1D2916004A2B00 /* ListPayeesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7EB2B1D2916004A2B00 /* ListPayeesView.swift */; };
+		0A8BE7EE2B1D2931004A2B00 /* ListBudgetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7ED2B1D2931004A2B00 /* ListBudgetsView.swift */; };
+		0A8BE7F02B1D2945004A2B00 /* ListTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7EF2B1D2945004A2B00 /* ListTagsView.swift */; };
+		0A8BE7F42B1D2B65004A2B00 /* EditPayeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7F32B1D2B65004A2B00 /* EditPayeeView.swift */; };
+		0A8BE7F62B1D2B7A004A2B00 /* EditBudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7F52B1D2B7A004A2B00 /* EditBudgetView.swift */; };
+		0A8BE7F82B1D2B8C004A2B00 /* EditTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7F72B1D2B8C004A2B00 /* EditTagView.swift */; };
+		0A8BE7FB2B1E69FE004A2B00 /* ListAccountsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7FA2B1E69FE004A2B00 /* ListAccountsView.swift */; };
+		0A8BE7FD2B1E6A11004A2B00 /* EditAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7FC2B1E6A11004A2B00 /* EditAccountView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +57,6 @@
 /* Begin PBXFileReference section */
 		0A58002D2B00059C00C44A88 /* iBudget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBudget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A5800302B00059C00C44A88 /* iBudgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iBudgetApp.swift; sourceTree = "<group>"; };
-		0A5800322B00059C00C44A88 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0A5800342B00059E00C44A88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A5800372B00059E00C44A88 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0A58003D2B00059E00C44A88 /* iBudgetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iBudgetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +64,28 @@
 		0A5800472B00059E00C44A88 /* iBudgetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iBudgetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A58004B2B00059E00C44A88 /* iBudgetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iBudgetUITests.swift; sourceTree = "<group>"; };
 		0A58004D2B00059E00C44A88 /* iBudgetUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iBudgetUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0A58006F2B00111F00C44A88 /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		0A5800702B00111F00C44A88 /* Payee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Payee.swift; sourceTree = "<group>"; };
+		0A5800712B00111F00C44A88 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		0A5800722B00111F00C44A88 /* Budget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Budget.swift; sourceTree = "<group>"; };
+		0A5800732B00111F00C44A88 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		0A5800742B00111F00C44A88 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		0A5800752B00111F00C44A88 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		0A8BE7DD2B1B23F6004A2B00 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0A8BE7DF2B1B26A8004A2B00 /* EditCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryView.swift; sourceTree = "<group>"; };
+		0A8BE7E12B1B2B22004A2B00 /* ListCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCategoriesView.swift; sourceTree = "<group>"; };
+		0A8BE7E32B1BB543004A2B00 /* EditTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionView.swift; sourceTree = "<group>"; };
+		0A8BE7E52B1BB552004A2B00 /* ListTransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTransactionsView.swift; sourceTree = "<group>"; };
+		0A8BE7E72B1CEB5F004A2B00 /* ListCurrenciesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCurrenciesView.swift; sourceTree = "<group>"; };
+		0A8BE7E92B1CEC6E004A2B00 /* EditCurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCurrencyView.swift; sourceTree = "<group>"; };
+		0A8BE7EB2B1D2916004A2B00 /* ListPayeesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPayeesView.swift; sourceTree = "<group>"; };
+		0A8BE7ED2B1D2931004A2B00 /* ListBudgetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBudgetsView.swift; sourceTree = "<group>"; };
+		0A8BE7EF2B1D2945004A2B00 /* ListTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTagsView.swift; sourceTree = "<group>"; };
+		0A8BE7F32B1D2B65004A2B00 /* EditPayeeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPayeeView.swift; sourceTree = "<group>"; };
+		0A8BE7F52B1D2B7A004A2B00 /* EditBudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBudgetView.swift; sourceTree = "<group>"; };
+		0A8BE7F72B1D2B8C004A2B00 /* EditTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTagView.swift; sourceTree = "<group>"; };
+		0A8BE7FA2B1E69FE004A2B00 /* ListAccountsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAccountsView.swift; sourceTree = "<group>"; };
+		0A8BE7FC2B1E6A11004A2B00 /* EditAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +136,10 @@
 		0A58002F2B00059C00C44A88 /* iBudget */ = {
 			isa = PBXGroup;
 			children = (
+				0A8BE7F92B1E5F9D004A2B00 /* ViewModels */,
+				0A58007E2B0013E400C44A88 /* Views */,
+				0A58006D2B00111F00C44A88 /* Models */,
 				0A5800302B00059C00C44A88 /* iBudgetApp.swift */,
-				0A5800322B00059C00C44A88 /* ContentView.swift */,
 				0A5800342B00059E00C44A88 /* Assets.xcassets */,
 				0A5800362B00059E00C44A88 /* Preview Content */,
 			);
@@ -125,6 +169,49 @@
 				0A58004D2B00059E00C44A88 /* iBudgetUITestsLaunchTests.swift */,
 			);
 			path = iBudgetUITests;
+			sourceTree = "<group>";
+		};
+		0A58006D2B00111F00C44A88 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0A58006F2B00111F00C44A88 /* Currency.swift */,
+				0A5800702B00111F00C44A88 /* Payee.swift */,
+				0A5800712B00111F00C44A88 /* Category.swift */,
+				0A5800722B00111F00C44A88 /* Budget.swift */,
+				0A5800732B00111F00C44A88 /* Transaction.swift */,
+				0A5800742B00111F00C44A88 /* Tag.swift */,
+				0A5800752B00111F00C44A88 /* Account.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0A58007E2B0013E400C44A88 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0A8BE7DD2B1B23F6004A2B00 /* ContentView.swift */,
+				0A8BE7FA2B1E69FE004A2B00 /* ListAccountsView.swift */,
+				0A8BE7ED2B1D2931004A2B00 /* ListBudgetsView.swift */,
+				0A8BE7E12B1B2B22004A2B00 /* ListCategoriesView.swift */,
+				0A8BE7E72B1CEB5F004A2B00 /* ListCurrenciesView.swift */,
+				0A8BE7EB2B1D2916004A2B00 /* ListPayeesView.swift */,
+				0A8BE7EF2B1D2945004A2B00 /* ListTagsView.swift */,
+				0A8BE7E52B1BB552004A2B00 /* ListTransactionsView.swift */,
+				0A8BE7FC2B1E6A11004A2B00 /* EditAccountView.swift */,
+				0A8BE7F52B1D2B7A004A2B00 /* EditBudgetView.swift */,
+				0A8BE7DF2B1B26A8004A2B00 /* EditCategoryView.swift */,
+				0A8BE7E92B1CEC6E004A2B00 /* EditCurrencyView.swift */,
+				0A8BE7F32B1D2B65004A2B00 /* EditPayeeView.swift */,
+				0A8BE7F72B1D2B8C004A2B00 /* EditTagView.swift */,
+				0A8BE7E32B1BB543004A2B00 /* EditTransactionView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0A8BE7F92B1E5F9D004A2B00 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +344,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A5800332B00059C00C44A88 /* ContentView.swift in Sources */,
+				0A8BE7EE2B1D2931004A2B00 /* ListBudgetsView.swift in Sources */,
+				0A8BE7F82B1D2B8C004A2B00 /* EditTagView.swift in Sources */,
+				0A8BE7E62B1BB552004A2B00 /* ListTransactionsView.swift in Sources */,
+				0A58007D2B00111F00C44A88 /* Account.swift in Sources */,
+				0A8BE7EA2B1CEC6E004A2B00 /* EditCurrencyView.swift in Sources */,
+				0A8BE7DE2B1B23F6004A2B00 /* ContentView.swift in Sources */,
+				0A5800772B00111F00C44A88 /* Currency.swift in Sources */,
+				0A8BE7E22B1B2B22004A2B00 /* ListCategoriesView.swift in Sources */,
+				0A8BE7F42B1D2B65004A2B00 /* EditPayeeView.swift in Sources */,
+				0A8BE7E42B1BB543004A2B00 /* EditTransactionView.swift in Sources */,
+				0A58007C2B00111F00C44A88 /* Tag.swift in Sources */,
+				0A58007A2B00111F00C44A88 /* Budget.swift in Sources */,
+				0A5800782B00111F00C44A88 /* Payee.swift in Sources */,
 				0A5800312B00059C00C44A88 /* iBudgetApp.swift in Sources */,
+				0A8BE7E82B1CEB5F004A2B00 /* ListCurrenciesView.swift in Sources */,
+				0A8BE7FD2B1E6A11004A2B00 /* EditAccountView.swift in Sources */,
+				0A8BE7E02B1B26A8004A2B00 /* EditCategoryView.swift in Sources */,
+				0A8BE7EC2B1D2916004A2B00 /* ListPayeesView.swift in Sources */,
+				0A5800792B00111F00C44A88 /* Category.swift in Sources */,
+				0A58007B2B00111F00C44A88 /* Transaction.swift in Sources */,
+				0A8BE7F02B1D2945004A2B00 /* ListTagsView.swift in Sources */,
+				0A8BE7FB2B1E69FE004A2B00 /* ListAccountsView.swift in Sources */,
+				0A8BE7F62B1D2B7A004A2B00 /* EditBudgetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

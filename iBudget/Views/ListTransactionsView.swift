@@ -10,45 +10,48 @@ import SwiftData
 
 struct ListTransactionsView: View {
     @Environment(\.modelContext) var modelContext
-    @Query var categories: [Category]
-    @State private var path = [Category]()
+    @Query var transactions: [Transaction]
+    @State private var path = [Transaction]()
 
 
     var body: some View {
         NavigationStack(path: $path) {
             List {
-                ForEach(categories) { category in
-                    NavigationLink(value: category) {
+                ForEach(transactions) { transaction in
+                    NavigationLink(value: transaction) {
                         VStack(alignment: .leading) {
-                            Text(category.name)
+                            Text(transaction.transaction_details)
                                 .font(.headline)
                         }
                     }
                 }
-                .onDelete(perform: deleteCategories)
+                .onDelete(perform: deleteTransaction)
 
             }
-            .navigationTitle("Categories")
-            .navigationDestination(for: Category.self, destination: EditCategoryView.init)
+            .navigationTitle("Transactions")
+            .navigationDestination(for: Transaction.self) { transaction in
+                EditTransactionView(transaction: transaction)
+            }
+
 
             .toolbar {
-                Button("Add Category", systemImage: "plus", action: addCategory)
+                Button("Add Transaction", systemImage: "plus", action: addTransaction)
             }
         }
     }
     
 
     
-    func addCategory() {
-        let category = Category()
-        modelContext.insert(category)
-        path = [category]
+    func addTransaction() {
+        let transaction = Transaction()
+        modelContext.insert(transaction)
+        path = [transaction]
     }
     
-    func deleteCategories(_ indexSet: IndexSet) {
+    func deleteTransaction(_ indexSet: IndexSet) {
         for index in indexSet {
-            let category = categories[index]
-            modelContext.delete(category)
+            let transaction = transactions[index]
+            modelContext.delete(transaction)
         }
     }
 }
@@ -56,5 +59,5 @@ struct ListTransactionsView: View {
 
 
 #Preview {
-    ListCategoriesView()
+    ListTransactionsView()
 }

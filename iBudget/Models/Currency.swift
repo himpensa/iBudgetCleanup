@@ -1,24 +1,30 @@
-import Foundation
+//
+//  Currency.swift
+//  MyAppController
+//
+//  Created by Antoine Himpens on 28/10/2023.
+//
 
-class Currency: NSObject {
-    var currency_id: Int
-    var currency_name: String
+import SwiftUI
+import SwiftData
+
+@Model class Currency {
+    var name: String
     var currency_symbol: String
     var short_name: String
 
-    init(currency_id: Int, currency_name: String, currency_symbol: String, short_name: String) {
-        self.currency_id = currency_id
-        self.currency_name = currency_name
+    init(name: String = "", currency_symbol: String = "", short_name: String = "") {
+        self.name = name
         self.currency_symbol = currency_symbol
         self.short_name = short_name
     }
 
     func description() -> String {
-        return "Currency [ID: \(currency_id), Name: \(currency_name), Symbol: \(currency_symbol), Short Name: \(short_name)]"
+        return "Currency [Name: \(name), Symbol: \(currency_symbol), Short Name: \(short_name)]"
     }
 
-    func update(currency_name: String, currency_symbol: String, short_name: String) {
-        self.currency_name = currency_name
+    func update(name: String, currency_symbol: String, short_name: String) {
+        self.name = name
         self.currency_symbol = currency_symbol
         self.short_name = short_name
     }
@@ -163,7 +169,7 @@ class CurrencyXMLParser: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         currentElement = elementName
         if elementName == "CcyNtry" {
-            currentCurrency = Currency(currency_id: currencies.count, currency_name: "", currency_symbol: "", short_name: "")
+            currentCurrency = Currency(name: "", currency_symbol: "", short_name: "")
         }
     }
 
@@ -171,7 +177,7 @@ class CurrencyXMLParser: NSObject, XMLParserDelegate {
         guard let currentCurrency = currentCurrency, let currentElement = currentElement else { return }
         switch currentElement {
         case "CcyNm":
-            currentCurrency.currency_name = string
+            currentCurrency.name = string
         case "Ccy":
             currentCurrency.short_name = string
             currentCurrency.currency_symbol = symbols[string, default: ""]

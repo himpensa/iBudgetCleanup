@@ -5,9 +5,10 @@
 //  Created by Antoine Himpens on 28/10/2023.
 //
 
-import Foundation
+import SwiftUI
+import SwiftData
 
-class Budget {
+@Model class Budget {
   var budget_id: Int
   var budget_name: String
   var budget_date: Date

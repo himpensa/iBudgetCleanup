@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct ListCategoryView: View {
+struct ListCategoriesView: View {
     @Environment(\.modelContext) var modelContext
     @Query var categories: [Category]
     @State private var path = [Category]()
@@ -25,7 +25,7 @@ struct ListCategoryView: View {
                         }
                     }
                 }
-                .onDelete(perform: deleteCategories)
+                .onDelete(perform: deleteCategory)
 
             }
             .navigationTitle("Categories")
@@ -45,7 +45,7 @@ struct ListCategoryView: View {
         path = [category]
     }
     
-    func deleteCategories(_ indexSet: IndexSet) {
+    func deleteCategory(_ indexSet: IndexSet) {
         for index in indexSet {
             let category = categories[index]
             modelContext.delete(category)
@@ -56,5 +56,5 @@ struct ListCategoryView: View {
 
 
 #Preview {
-    ListCategoryView()
+    ListCategoriesView()
 }

@@ -5,78 +5,48 @@ struct ContentView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            HomeView()
+            ListCurrenciesView()
                 .tabItem {
-                    Image(systemName: "house.fill")
+                    Image(systemName: "dollarsign.circle")
                 }
                 .tag(0)
 
-            AddView()
+            ListPayeesView()
                 .tabItem {
-                    Image(systemName: "plus.circle.fill")
+                    Image(systemName: "cart")
                 }
                 .tag(1)
 
-            SettingsView()
+            ListCategoriesView()
                 .tabItem {
-                    Image(systemName: "gearshape.fill")
+                    Image(systemName: "car.fill")
                 }
                 .tag(2)
 
-            HelpView()
+            ListTransactionsView()
+                .tabItem {
+                    Image(systemName: "calendar")
+                }
+                .tag(3)
+            ListBudgetsView()
                 .tabItem {
                     Image(systemName: "questionmark.circle.fill")
                 }
-                .tag(3)
-        }
+                .tag(4)
+            ListTagsView()
+                .tabItem {
+                    Image(systemName: "questionmark.circle.fill")
+                }
+                .tag(5)
+            ListAccountsView()
+                .tabItem {
+                    Text("Accounts")
+                    Image(systemName: "questionmark.circle.fill")
+                }
+                .tag(5)
+          }
     }
 }
-
-// Vue pour la rubrique "Home"
-struct HomeView: View {
-    var body: some View {
-        VStack {
-            Text("Accueil")
-                .font(.largeTitle)
-            Spacer()
-        }
-    }
-}
-
-// Vue pour la rubrique "Ajouter"
-struct AddView: View {
-    var body: some View {
-        VStack {
-            Text("Ajouter")
-                .font(.largeTitle)
-            Spacer()
-        }
-    }
-}
-
-// Vue pour la rubrique "Paramètres"
-struct SettingsView: View {
-    var body: some View {
-        VStack {
-            Text("Paramètres")
-                .font(.largeTitle)
-            Spacer()
-        }
-    }
-}
-
-// Vue pour la rubrique "Aide"
-struct HelpView: View {
-    var body: some View {
-        VStack {
-            Text("Aide")
-                .font(.largeTitle)
-            Spacer()
-        }
-    }
-}
-
-
 #Preview {
     ContentView()
 }
