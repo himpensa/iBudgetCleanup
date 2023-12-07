@@ -11,10 +11,12 @@ import SwiftData
 
 @Model class Category {
     var name: String
+    var iconName: String
     var subcategories: [Subcategory]
 
-    init(name: String="", subcategories: [Subcategory] = []) {
+    init(name: String="", iconName: String = "circle", subcategories: [Subcategory] = []) {
         self.name = name
+        self.iconName = iconName
         self.subcategories = subcategories
     }
 }

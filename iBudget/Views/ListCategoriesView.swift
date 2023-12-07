@@ -1,32 +1,33 @@
-//
-//  ListCategoryView.swift
-//  iBudget
-//
-//  Created by Antoine Himpens on 02/12/2023.
-//
-
 import SwiftUI
 import SwiftData
+
 
 struct ListCategoriesView: View {
     @Environment(\.modelContext) var modelContext
     @Query var categories: [Category]
     @State private var path = [Category]()
 
-
     var body: some View {
         NavigationStack(path: $path) {
             List {
                 ForEach(categories) { category in
                     NavigationLink(value: category) {
-                        VStack(alignment: .leading) {
-                            Text(category.name)
-                                .font(.headline)
+                        HStack {
+                            // Icône agrandie
+                            Image(systemName: category.iconName)
+                                .resizable() // Rend l'image redimensionnable
+                                .scaledToFit() // Garde le ratio d'aspect
+                                .frame(width: 40, height: 40) // Définit la taille de l'icône
+                                .foregroundColor(.accentColor) // Vous pouvez personnaliser la couleur si nécessaire
+                            
+                            VStack(alignment: .leading) {
+                                Text(category.name)
+                                    .font(.headline)
+                            }
                         }
                     }
                 }
                 .onDelete(perform: deleteCategory)
-
             }
             .navigationTitle("Categories")
             .navigationDestination(for: Category.self, destination: EditCategoryView.init)
@@ -36,8 +37,6 @@ struct ListCategoriesView: View {
             }
         }
     }
-    
-
     
     func addCategory() {
         let category = Category()
@@ -51,10 +50,4 @@ struct ListCategoriesView: View {
             modelContext.delete(category)
         }
     }
-}
-
-
-
-#Preview {
-    ListCategoriesView()
 }
