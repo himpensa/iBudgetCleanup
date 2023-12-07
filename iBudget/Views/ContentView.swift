@@ -11,7 +11,6 @@ struct ContentView: View {
                     Image(systemName: "questionmark.circle.fill")
                 }
                 .tag(0)
-            
             ListTransactionsView()
                 .tabItem {
                     Text("Transactions")

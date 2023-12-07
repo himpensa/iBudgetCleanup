@@ -1,64 +1,37 @@
-//
-//  EditDestinationView.swift
-//  iBudget
-//
-//  Created by Antoine Himpens on 11/11/2023.
-//
-
 import SwiftUI
 import SwiftData
 
 struct EditCategoryView: View {
     @Bindable var category: Category
-    let icons = ["cup.and.saucer.fill",
-                 "scissors.circle",
-                 "sportscourt.circle",
-                 "pawprint.circle",
-                 "car.circle",
-                 "scissors.circle",
-                 "gamecontroller.circle",
-                 "rectangle.stack.person.crop.circle",
-                 "app.circle",
-                 "printer.fill.and.paper.fill",
-                 "person.circle",
-                 "laptopcomputer.circle",
-                 "cart.circle",
-                 "network.circle",
-                 "pencil.circle",
-                 "Sglobe.europe.africa.circle",
-                 "app.circle",
-                 "camera.circle",
-                 "wrench.circle",
-                 "person.2.circle",
-                 "book.circle",
-                 "music.note.circle",
-                 "film.circle",
-                 "desktopcomputer.circle",
-                 "leaf.circle",
-                 "paintbrush.pointed.circle",
-                 "cross.case.circle",
-                 "pills.circle",
-                 "bus.circle",
-                 "car.circle",
-                 "person.crop.circle",
-                 "cart.circle",
-                 "camera.circle",
-                 "paintpalette.circle",
-                 "guitars.circle"
-                 ] // Liste des icônes SF Symbols disponibles
-    
+    let icons = [
+        "cup.and.saucer.fill", "scissors.circle", "sportscourt.circle",
+        "pawprint.circle", "car.circle", "scissors.circle",
+        "printer.fill.and.paper.fill", "person.circle", "cart.circle",
+        "pencil.circle", "camera.circle", "person.2.circle",
+        "book.circle", "film.circle", "leaf.circle",
+        "cross.case.circle", "pills.circle", "bus.circle",
+        "person.crop.circle", "cart.circle", "camera.circle"
+    ] // Liste des icônes SF Symbols disponibles
+    let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
+
     var body: some View {
         Form {
             TextField("Name", text: $category.name)
             
-            Picker("Icon", selection: $category.iconName) {
+            LazyVGrid(columns: columns, alignment: .center, spacing: 10) {
                 ForEach(icons, id: \.self) { icon in
-                    Label(icon, systemImage: icon)
+                    Image(systemName: icon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40, height: 40)
+                        .padding()
+                        .foregroundColor(category.iconName == icon ? .blue : .gray) // Changez les couleurs selon vos préférences
+                        .onTapGesture {
+                            category.iconName = icon
+                        }
                 }
             }
-            
         }
-        
         .navigationTitle("Edit Category")
         .navigationBarTitleDisplayMode(.inline)
     }
