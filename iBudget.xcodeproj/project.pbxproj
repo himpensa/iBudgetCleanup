@@ -35,6 +35,8 @@
 		0A8BE7F82B1D2B8C004A2B00 /* EditTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7F72B1D2B8C004A2B00 /* EditTagView.swift */; };
 		0A8BE7FB2B1E69FE004A2B00 /* ListAccountsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7FA2B1E69FE004A2B00 /* ListAccountsView.swift */; };
 		0A8BE7FD2B1E6A11004A2B00 /* EditAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7FC2B1E6A11004A2B00 /* EditAccountView.swift */; };
+		0A957C122B245E1B00BB4155 /* ExportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A957C112B245E1B00BB4155 /* ExportData.swift */; };
+		0A957C152B245EA200BB4155 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 0A957C142B245EA200BB4155 /* XMLCoder */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,7 @@
 		0A8BE7F72B1D2B8C004A2B00 /* EditTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTagView.swift; sourceTree = "<group>"; };
 		0A8BE7FA2B1E69FE004A2B00 /* ListAccountsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAccountsView.swift; sourceTree = "<group>"; };
 		0A8BE7FC2B1E6A11004A2B00 /* EditAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountView.swift; sourceTree = "<group>"; };
+		0A957C112B245E1B00BB4155 /* ExportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExportData.swift; path = ../Views/ExportData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A957C152B245EA200BB4155 /* XMLCoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +178,7 @@
 		0A58006D2B00111F00C44A88 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0A957C112B245E1B00BB4155 /* ExportData.swift */,
 				0A58006F2B00111F00C44A88 /* Currency.swift */,
 				0A5800702B00111F00C44A88 /* Payee.swift */,
 				0A5800712B00111F00C44A88 /* Category.swift */,
@@ -230,6 +235,9 @@
 			dependencies = (
 			);
 			name = iBudget;
+			packageProductDependencies = (
+				0A957C142B245EA200BB4155 /* XMLCoder */,
+			);
 			productName = iBudget;
 			productReference = 0A58002D2B00059C00C44A88 /* iBudget.app */;
 			productType = "com.apple.product-type.application";
@@ -302,6 +310,9 @@
 				Base,
 			);
 			mainGroup = 0A5800242B00059C00C44A88;
+			packageReferences = (
+				0A957C132B245EA200BB4155 /* XCRemoteSwiftPackageReference "XMLCoder" */,
+			);
 			productRefGroup = 0A58002E2B00059C00C44A88 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -367,6 +378,7 @@
 				0A8BE7F02B1D2945004A2B00 /* ListTagsView.swift in Sources */,
 				0A8BE7FB2B1E69FE004A2B00 /* ListAccountsView.swift in Sources */,
 				0A8BE7F62B1D2B7A004A2B00 /* EditBudgetView.swift in Sources */,
+				0A957C122B245E1B00BB4155 /* ExportData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,6 +708,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0A957C132B245EA200BB4155 /* XCRemoteSwiftPackageReference "XMLCoder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MaxDesiatov/XMLCoder.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.17.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0A957C142B245EA200BB4155 /* XMLCoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A957C132B245EA200BB4155 /* XCRemoteSwiftPackageReference "XMLCoder" */;
+			productName = XMLCoder;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0A5800252B00059C00C44A88 /* Project object */;
 }

@@ -1,11 +1,15 @@
+
+import SwiftData
 import SwiftUI
 
 struct ContentView: View {
+
     @State private var selectedTab = 0
+    let exportData = ExportData() // Instance de ExportData
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            ListAccountsView()
+           ListAccountsView()
                 .tabItem {
                     Text("Accounts")
                     Image(systemName: "questionmark.circle.fill")
@@ -53,9 +57,36 @@ struct ContentView: View {
                 }
                 .tag(6)
 
-          }
+
+
+            // Onglet de réglages pour l'export et l'import
+            SettingsView(exportData: exportData)
+                .tabItem {
+                    Text("Settings")
+                    Image(systemName: "gear")
+                }
+                .tag(7) // Assurez-vous que le tag est unique
+        }
     }
 }
-#Preview {
-    ContentView()
+
+struct SettingsView: View {
+    var exportData: ExportData // Référence à l'instance de ExportData
+    @Query var accounts: [Account]
+
+
+    var body: some View {
+        VStack {
+            Button("Exporter les données") {
+                // Appeler la fonction d'exportation
+                // Remplacez ceci par la récupération de vos données réelles à exporter
+                exportData.BackupData(accounts: accounts)
+            }
+
+            Button("Importer les données") {
+                // Appeler la fonction d'importation
+                let _ = exportData.RestoreData()
+            }
+        }
+    }
 }
