@@ -10,20 +10,43 @@ import SwiftData
 
 struct ListTransactionsView: View {
     @Environment(\.modelContext) var modelContext
-    @Query var transactions: [Transaction]
+    @Query(sort: \Transaction.transaction_date) var transactions: [Transaction]
     @State private var path = [Transaction]()
-
-
+    @State private var lastDate = DateFormatter().date(from: "2020/01/01") ?? Date()
+ 
+    let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E, dd MMM yyyy"
+        return formatter
+    }()
+    
     var body: some View {
         NavigationStack(path: $path) {
             List {
                 ForEach(transactions) { transaction in
                     NavigationLink(value: transaction) {
-                        VStack(alignment: .leading) {
-                            Text(transaction.transaction_details)
-                                .font(.headline)
+                        VStack {
+                            /*if(lastDate != transaction.transaction_date){
+                                HStack {
+                                    Text(formatter.string(from: transaction.transaction_date))
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                        .onAppear {
+                                            lastDate = transaction.transaction_date
+                                        }
+                                }
+                            }*/
+                            HStack {
+                                Text(transaction.transaction_details)
+                                    .font(.headline)
+                                Spacer() // This will push the next text to the right
+                                Text(String(format: "%.2f", transaction.transaction_amount))
+                                    .font(.headline)
+                                
+                            }
                         }
                     }
+
                 }
                 .onDelete(perform: deleteTransaction)
 

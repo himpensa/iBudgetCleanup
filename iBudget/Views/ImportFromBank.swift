@@ -33,16 +33,20 @@ struct ImportFromBank: View {
     }
     
     func importQIF(from fileURL: URL){
+            fileURL.startAccessingSecurityScopedResource()
+
+        
         let qifString = try? String(contentsOf: fileURL)
 
-        let lines = qifString!.split(separator: "\n")
-        //var transactions = [Transaction]()
-        var date: Date?
-        var amount: Double?
-        var description: String?
+        do  {
+            let qifString = try String(contentsOf: fileURL)
+            let lines = qifString.split(separator: "\n")
+            var date: Date?
+            var amount: Double?
+            var description: String?
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
 
         for line in lines {
             if line.hasPrefix("D") {
@@ -65,7 +69,14 @@ struct ImportFromBank: View {
                 
             }
         }
+        } catch {
+            print("Erreur lors de la lecture du fichier : \(error)")
+        }
+        fileURL.stopAccessingSecurityScopedResource()
+
+
     }
+        
 }
 
 

@@ -57,7 +57,12 @@ struct ContentView: View {
                 }
                 .tag(6)
 
-
+            ImportFromBank()
+                .tabItem {
+                    Text("QIF")
+                    Image(systemName: "dollarsign.circle")
+                }
+                .tag(7)
 
             // Onglet de réglages pour l'export et l'import
             SettingsView(exportData: exportData)
@@ -65,15 +70,15 @@ struct ContentView: View {
                     Text("Settings")
                     Image(systemName: "gear")
                 }
-                .tag(7) // Assurez-vous que le tag est unique
+                .tag(8) // Assurez-vous que le tag est unique
         }
     }
 }
 
 struct SettingsView: View {
     var exportData: ExportData // Référence à l'instance de ExportData
+    @Environment(\.modelContext) var modelContext
     @Query var accounts: [Account]
-
 
     var body: some View {
         VStack {
@@ -85,7 +90,12 @@ struct SettingsView: View {
 
             Button("Importer les données") {
                 // Appeler la fonction d'importation
-                let _ = exportData.RestoreData()
+                let exportData = ExportData()
+                if let restoredAccounts = exportData.RestoreData() {
+                    for account in restoredAccounts {
+                        modelContext.insert(account)
+                    }
+                }
             }
         }
     }
