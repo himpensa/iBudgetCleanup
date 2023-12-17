@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>NSOpenAccessClientUsageDescription</key>
-	<string>Votre message expliquant pourquoi l&apos;application a besoin d&apos;accéder au système de fichiers</string>
-</dict>
-</plist>
