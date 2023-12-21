@@ -78,14 +78,15 @@ struct SettingsView: View {
     @Environment(\.modelContext) var modelContext
     @Query var categories: [Category]
     @Query var accounts: [Account]
-    
+    @Query var currencies: [Currency]
+
     var body: some View {
         VStack {
             Button("Exporter les données") {
                 // Appeler la fonction d'exportation
                 // Remplacez ceci par la récupération de vos données réelles à exporter
                 // Créer une structure contenant les deux tableaux
-                let dataContainer = DataContainer(categories: categories, accounts: accounts)
+                let dataContainer = DataContainer(categories: categories, accounts: accounts, currencies: currencies)
 
                   // Encoder et sauvegarder les données dans data.json
                   encodeData(data: dataContainer, toFile: "data.json")

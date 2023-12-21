@@ -10,6 +10,7 @@ import Foundation
 struct DataContainer: Codable {
     var categories: [Category]
     var accounts: [Account]
+    var currencies: [Currency]
 }
 
 func encodeData(data: DataContainer, toFile file: String) {
@@ -50,7 +51,7 @@ func decodeData(fromFile file: String) -> DataContainer? {
 
         // Vérifiez si le fichier existe avant d'essayer de le lire
         guard fileManager.fileExists(atPath: fileURL.path) else {
-            print("Le fichier accounts.xml n'existe pas.")
+            print("Le fichier data.json n'existe pas.")
             return nil
         }
         

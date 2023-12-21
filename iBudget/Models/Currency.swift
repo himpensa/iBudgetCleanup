@@ -8,15 +8,15 @@
 import SwiftUI
 import SwiftData
 
-@Model class Currency {
+@Model class Currency: Codable {
     var currency_name: String
     var currency_symbol: String
     var currency_alphabetic_code: String
     var currency_entity: String
     var currency_numeric_code: String
-    var currency_minor_unit: String
+    var currency_minor_unit: Int
 
-    init(currency_name: String = "", currency_symbol: String = "", currency_alphabetic_code: String = "", currency_entity: String = "", currency_numeric_code: String = "", currency_minor_unit: String = "") {
+    init(currency_name: String = "", currency_symbol: String = "", currency_alphabetic_code: String = "", currency_entity: String = "", currency_numeric_code: String = "", currency_minor_unit: Int = 2) {
         self.currency_name = currency_name
         self.currency_symbol = currency_symbol
         self.currency_alphabetic_code = currency_alphabetic_code
@@ -29,12 +29,42 @@ import SwiftData
         return "Currency [Name: \(currency_name), Symbol: \(currency_symbol), Short Name: \(currency_alphabetic_code), Entity: \(currency_entity), Numeric Code: \(currency_numeric_code), Minor Unit: \(currency_minor_unit)]"
     }
 
-    func update(currency_name: String, currency_symbol: String, currency_alphabetic_code: String) {
+    func update(currency_name: String, currency_symbol: String, currency_alphabetic_code: String, currency_entity : String, currency_numeric_code : String, currency_minor_unit: Int) {
         self.currency_name = currency_name
         self.currency_symbol = currency_symbol
         self.currency_alphabetic_code = currency_alphabetic_code
         self.currency_entity =  currency_entity
         self.currency_numeric_code = currency_numeric_code
         self.currency_minor_unit = currency_minor_unit
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        currency_name = try values.decode(String.self, forKey: .currency_name)
+        currency_symbol = try values.decode(String.self, forKey: .currency_symbol)
+        currency_alphabetic_code = try values.decode(String.self, forKey: .currency_alphabetic_code)
+        currency_entity = try values.decode(String.self, forKey: .currency_entity)
+        currency_numeric_code = try values.decode(String.self, forKey: .currency_numeric_code)
+        currency_minor_unit = try values.decode(Int.self, forKey: .currency_minor_unit)
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(currency_name, forKey: .currency_name)
+        try container.encode(currency_symbol, forKey: .currency_symbol)
+        try container.encode(currency_numeric_code, forKey: .currency_numeric_code)
+        try container.encode(currency_entity, forKey: .currency_entity)
+        try container.encodeIfPresent(currency_alphabetic_code, forKey: .currency_alphabetic_code)
+        try container.encode(currency_minor_unit, forKey: .currency_minor_unit)
+
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case currency_name
+        case currency_symbol
+        case currency_alphabetic_code
+        case currency_entity
+        case currency_numeric_code
+        case currency_minor_unit
     }
 }
