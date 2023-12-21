@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @Model class Account : Codable {
-    var account_id: Int
+    var account_id: UUID
     var account_name: String
     var account_description: String?
     var account_currency: Currency?
@@ -18,7 +18,7 @@ import SwiftData
     var is_opened: Bool
     var transactions: [Transaction] = []  // Liste de transactions
     
-    init(account_id: Int=0, account_name: String="", account_description: String="", account_currency: Currency? = nil, account_type: String="Cash", starting_balance: Double=0, is_opened: Bool=true, transactions: [Transaction] = []) {
+    init(account_id: UUID=UUID(), account_name: String="", account_description: String="", account_currency: Currency? = nil, account_type: String="Cash", starting_balance: Double=0, is_opened: Bool=true, transactions: [Transaction] = []) {
         self.account_id = account_id
         self.account_name = account_name
         self.account_description = account_description
@@ -53,9 +53,10 @@ import SwiftData
     // Implémentation requise de Decodable
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        account_id = try container.decode(UUID.self, forKey: .account_id)
         account_name = try container.decode(String.self, forKey: .account_name)
         starting_balance = try container.decode(Double.self, forKey: .starting_balance)
-        account_id = 0
+        account_id = try container.decode(UUID.self, forKey: .account_id)
         account_description = nil
         if let currency = try? container.decode(Currency.self, forKey: .account_currency) {
                 account_currency = currency
@@ -68,6 +69,7 @@ import SwiftData
     
     // CodingKeys pour associer les propriétés aux clés du JSON/XML
     private enum CodingKeys: String, CodingKey {
+        case account_id
         case account_name
         case starting_balance
         case account_currency

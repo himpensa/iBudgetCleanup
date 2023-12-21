@@ -79,14 +79,18 @@ struct SettingsView: View {
     @Query var categories: [Category]
     @Query var accounts: [Account]
     @Query var currencies: [Currency]
-
+    @Query var transactions: [Transaction]
+    @Query var tags: [Tag]
+    @Query var payees: [Payee]
+    @Query var budgets: [Budget]
+    
     var body: some View {
         VStack {
             Button("Exporter les données") {
                 // Appeler la fonction d'exportation
                 // Remplacez ceci par la récupération de vos données réelles à exporter
                 // Créer une structure contenant les deux tableaux
-                let dataContainer = DataContainer(categories: categories, accounts: accounts, currencies: currencies)
+                let dataContainer = DataContainer(categories: categories, accounts: accounts, currencies: currencies, transactions: transactions)
 
                   // Encoder et sauvegarder les données dans data.json
                   encodeData(data: dataContainer, toFile: "data.json")
@@ -98,16 +102,62 @@ struct SettingsView: View {
                 // Décoder les données depuis data.json
                 if let decodedData: DataContainer = decodeData(fromFile: "data.json") {
                     for category in decodedData.categories {
-                        print("Category: \(category.category_name)")
-                        modelContext.insert(category)
-                    }
+                        if !categoryExistsInCurrentData(category: category) {
+                            modelContext.insert(category)
+                            print("Category ajoutée: \(category.category_name)")
+                        } else {
+                            print("Category déjà présente: \(category.category_name)")
+                        }                    }
                     for account in decodedData.accounts {
-                        print("Account: \(account.account_name)")
-                        modelContext.insert(account)
+                        if !accountExistsInCurrentData(account: account) {
+                            modelContext.insert(account)
+                            print("Account ajouté: \(account.account_name)")
+                        } else {
+                            print("Account déjà présent: \(account.account_name)")
+                        }
                     }
-
+                    for transaction in decodedData.transactions {
+                        if !transactionExistsInCurrentData(transaction: transaction) {
+                            modelContext.insert(transaction)
+                            print("Transaction ajouté: \(transaction.transaction_details)")
+                        } else {
+                            print("Transaction déjà présent: \(transaction.transaction_details)")
+                        }
+                    }
+                    for currency in decodedData.currencies {
+                        if !currencyExistsInCurrentData(currency: currency) {
+                            modelContext.insert(currency)
+                            print("Currency ajouté: \(currency.currency_alphabetic_code)")
+                        } else {
+                            print("Currency déjà présent: \(currency.currency_alphabetic_code)")
+                        }
+                    }
+                    
                 }
             }
         }
+    }
+}
+extension SettingsView {
+    private func categoryExistsInCurrentData(category: Category) -> Bool {
+        return categories.contains(where: { $0.category_id == category.category_id })
+    }
+    private func accountExistsInCurrentData(account: Account) -> Bool {
+        return accounts.contains(where: { $0.account_id == account.account_id })
+    }
+    private func transactionExistsInCurrentData(transaction: Transaction) -> Bool {
+        return transactions.contains(where: { $0.transaction_id == transaction.transaction_id })
+    }
+    private func currencyExistsInCurrentData(currency: Currency) -> Bool {
+        return currencies.contains(where: { $0.currency_id == currency.currency_id })
+    }
+    private func payeeExistsInCurrentData(payee: Payee) -> Bool {
+        return payees.contains(where: { $0.payee_id == payee.payee_id })
+    }
+    private func tagExistsInCurrentData(tag: Tag) -> Bool {
+        return tags.contains(where: { $0.tag_id == tag.tag_id })
+    }
+    private func budgetExistsInCurrentData(budget: Budget) -> Bool {
+        return budgets.contains(where: { $0.budget_id == budget.budget_id })
     }
 }

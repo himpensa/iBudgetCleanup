@@ -11,6 +11,7 @@ struct DataContainer: Codable {
     var categories: [Category]
     var accounts: [Account]
     var currencies: [Currency]
+    var transactions: [Transaction]
 }
 
 func encodeData(data: DataContainer, toFile file: String) {
