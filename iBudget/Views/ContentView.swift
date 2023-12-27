@@ -1,5 +1,6 @@
 
 import SwiftData
+import UniformTypeIdentifiers
 import SwiftUI
 
 struct ContentView: View {
@@ -87,19 +88,10 @@ struct SettingsView: View {
     var body: some View {
         VStack {
             Button("Exporter les données") {
-                // Appeler la fonction d'exportation
-                // Remplacez ceci par la récupération de vos données réelles à exporter
-                // Créer une structure contenant les deux tableaux
                 let dataContainer = DataContainer(categories: categories, accounts: accounts, currencies: currencies, transactions: transactions)
-
-                  // Encoder et sauvegarder les données dans data.json
-                  encodeData(data: dataContainer, toFile: "data.json")
-
+                encodeData(data: dataContainer, toFile: "data.json")
             }
-
             Button("Importer les données") {
-                // Appeler la fonction d'importation
-                // Décoder les données depuis data.json
                 if let decodedData: DataContainer = decodeData(fromFile: "data.json") {
                     for category in decodedData.categories {
                         if !categoryExistsInCurrentData(category: category) {
@@ -138,6 +130,10 @@ struct SettingsView: View {
         }
     }
 }
+
+
+
+
 extension SettingsView {
     private func categoryExistsInCurrentData(category: Category) -> Bool {
         return categories.contains(where: { $0.category_id == category.category_id })

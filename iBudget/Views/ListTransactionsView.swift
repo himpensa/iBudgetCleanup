@@ -11,63 +11,73 @@ import SwiftData
 struct ListTransactionsView: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \Transaction.transaction_date) var transactions: [Transaction]
+    @Query var accounts: [Account]
     @State private var path = [Transaction]()
     @State private var lastDate = DateFormatter().date(from: "2020/01/01") ?? Date()
- 
-    let formatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "E, dd MMM yyyy"
-        return formatter
-    }()
+    @State private var selectedAccount: Account? = nil
+
+    init() {
+            let defaultAccount = accounts.first { $0.is_default }
+            _selectedAccount = State(initialValue: defaultAccount)
+    }
+
     
     var body: some View {
-        NavigationStack(path: $path) {
-            List {
-                ForEach(transactions) { transaction in
-                    NavigationLink(value: transaction) {
-                        VStack {
-                            /*if(lastDate != transaction.transaction_date){
-                                HStack {
-                                    Text(formatter.string(from: transaction.transaction_date))
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                        .onAppear {
-                                            lastDate = transaction.transaction_date
-                                        }
-                                }
-                            }*/
-                            HStack {
-                                Image(systemName: transaction.transaction_category?.category_icon ?? "questionmark.circle")
-                                 Text(transaction.transaction_details)
+        NavigationView {
+            VStack {
+                List {
+                    ForEach(filteredTransactions, id: \.self) { transaction in
+                    NavigationLink(destination: EditTransactionView(transaction: transaction)) {
+                    VStack {
+                        HStack {
+                            Image(systemName: transaction.transaction_category?.category_icon ?? "questionmark.circle")
+                                Text(transaction.transaction_details)
                                     .font(.headline)
-                                Spacer() // This will push the next text to the right
+                                Spacer()
                                 Text(String(format: "%.2f", transaction.transaction_amount))
                                     .font(.headline)
-                                
                             }
                         }
                     }
-
                 }
                 .onDelete(perform: deleteTransaction)
-
             }
-            .navigationTitle("Transactions")
-            .navigationDestination(for: Transaction.self) { transaction in
-                EditTransactionView(transaction: transaction)
+        }
+        .navigationBarTitle("", displayMode: .inline)
+        .navigationBarItems(trailing: accountPicker)
+        .toolbar {
+            Button("Add Account", systemImage: "plus", action: addTransaction)
+        }
+    }
+}
+
+    private var accountPicker: some View {
+        Picker(selection: $selectedAccount, label: Text("Account")) {
+            ForEach(accounts, id: \.self) { account in
+                Text(account.account_name).tag(account as Account?)
             }
-
-
-            .toolbar {
-                Button("Add Transaction", systemImage: "plus", action: addTransaction)
+        }
+        .onAppear {
+            // Sélectionner automatiquement le compte par défaut si selectedAccount est nil
+            if selectedAccount == nil {
+                selectedAccount = accounts.first { $0.is_default }
             }
         }
     }
-    
 
+    
+    // Calcul des transactions filtrées en fonction du compte sélectionné
+    private var filteredTransactions: [Transaction] {
+        if let selectedAccount = selectedAccount {
+            return transactions.filter { $0.transaction_account == selectedAccount }
+        } else {
+            return transactions
+        }
+    }
     
     func addTransaction() {
         let transaction = Transaction()
+        transaction.transaction_account = selectedAccount
         modelContext.insert(transaction)
         path = [transaction]
     }
@@ -78,10 +88,4 @@ struct ListTransactionsView: View {
             modelContext.delete(transaction)
         }
     }
-}
-
-
-
-#Preview {
-    ListTransactionsView()
 }

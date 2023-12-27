@@ -16,13 +16,17 @@ struct EditTransactionView: View {
     @State private var selectedCurrency: Currency?
     @State private var selectedAccount: Account?
     @State private var selectedCategory: Category?
+    @State private var amountValue: Double = 0 // Ajout d'une variable pour gérer la saisie de montant
 
-    
+    @State private var amountText: String = ""
+
     init(transaction: Transaction) {
         self._transaction = Bindable(transaction)
         self._selectedCurrency = State(initialValue: transaction.transaction_currency)
         self._selectedAccount = State(initialValue: transaction.transaction_account)  // Initialiser avec le compte actuel
         self._selectedCategory = State(initialValue: transaction.transaction_category)
+        self._amountText = State(initialValue: String(format: "%.2f", transaction.transaction_amount))
+        
     }
     
     var body: some View {
@@ -33,15 +37,27 @@ struct EditTransactionView: View {
             }
             
             Section(header: Text("Amount and Currency")) {
-                TextField("Amount", value: $transaction.transaction_amount, formatter: NumberFormatter())
+                TextField("Amount", text: $amountText)
+                    .keyboardType(.decimalPad)
+                    .onChange(of: amountText) { newValue in
+                        print("New Value:", newValue)
+                        if let amount = Double(newValue) {
+                            print("Amount:", amount)
+                            transaction.transaction_amount = amount
+                        } else {
+                            print("Unable to convert to Double")
+                        }
+                    }
+
+
                 Picker("Currency", selection: $selectedCurrency) {
                     ForEach(currencies, id: \.self) { currency in
                         Text(currency.currency_name).tag(currency as Currency?)
                     }
                 }
-            }
-            .onChange(of: selectedCurrency) { newValue in
-                transaction.transaction_currency = newValue
+                .onChange(of: selectedCurrency) { newValue in
+                    transaction.transaction_currency = newValue
+                }
             }
 
             Section(header: Text("Account")) {

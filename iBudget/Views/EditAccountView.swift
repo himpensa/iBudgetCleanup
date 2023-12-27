@@ -23,6 +23,10 @@ struct EditAccountView: View {
         Form {
             TextField("Name", text: $account.account_name)
             
+            Section(header: Text("Checkbox")) {
+                           Toggle("Check me", isOn: $account.is_default)
+                       }
+            
             Section(header: Text("Currency")) {
                 Picker("Currency", selection: $selectedCurrency) {
                     ForEach(currencies, id: \.self) { currency in

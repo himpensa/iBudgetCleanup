@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0A5800312B00059C00C44A88 /* iBudgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5800302B00059C00C44A88 /* iBudgetApp.swift */; };
-		0A5800352B00059E00C44A88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A5800342B00059E00C44A88 /* Assets.xcassets */; };
 		0A5800382B00059E00C44A88 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A5800372B00059E00C44A88 /* Preview Assets.xcassets */; };
 		0A5800422B00059E00C44A88 /* iBudgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5800412B00059E00C44A88 /* iBudgetTests.swift */; };
 		0A58004C2B00059E00C44A88 /* iBudgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A58004B2B00059E00C44A88 /* iBudgetUITests.swift */; };
@@ -21,6 +20,7 @@
 		0A58007C2B00111F00C44A88 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5800742B00111F00C44A88 /* Tag.swift */; };
 		0A58007D2B00111F00C44A88 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5800752B00111F00C44A88 /* Account.swift */; };
 		0A6600072B30ED90007D7318 /* JSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6600062B30ED90007D7318 /* JSONData.swift */; };
+		0A66000A2B3C70A7007D7318 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6600092B3C70A7007D7318 /* Assets.xcassets */; };
 		0A66FFF92B2CABAD007D7318 /* ImportTransactionsFromQIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A66FFF82B2CABAD007D7318 /* ImportTransactionsFromQIF.swift */; };
 		0A66FFFC2B2CACEB007D7318 /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = 0A66FFFB2B2CACEB007D7318 /* SwiftCSV */; };
 		0A8BE7DE2B1B23F6004A2B00 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7DD2B1B23F6004A2B00 /* ContentView.swift */; };
@@ -61,7 +61,6 @@
 /* Begin PBXFileReference section */
 		0A58002D2B00059C00C44A88 /* iBudget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBudget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A5800302B00059C00C44A88 /* iBudgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iBudgetApp.swift; sourceTree = "<group>"; };
-		0A5800342B00059E00C44A88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A5800372B00059E00C44A88 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0A58003D2B00059E00C44A88 /* iBudgetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iBudgetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A5800412B00059E00C44A88 /* iBudgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iBudgetTests.swift; sourceTree = "<group>"; };
@@ -76,6 +75,8 @@
 		0A5800742B00111F00C44A88 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		0A5800752B00111F00C44A88 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		0A6600062B30ED90007D7318 /* JSONData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONData.swift; sourceTree = "<group>"; };
+		0A6600082B35C3F3007D7318 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0A6600092B3C70A7007D7318 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A66FFF82B2CABAD007D7318 /* ImportTransactionsFromQIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportTransactionsFromQIF.swift; sourceTree = "<group>"; };
 		0A66FFFF2B2E5855007D7318 /* iBudget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iBudget.entitlements; sourceTree = "<group>"; };
 		0A8BE7DD2B1B23F6004A2B00 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -145,14 +146,15 @@
 		0A58002F2B00059C00C44A88 /* iBudget */ = {
 			isa = PBXGroup;
 			children = (
+				0A6600082B35C3F3007D7318 /* Info.plist */,
 				0A6600002B2F0AD9007D7318 /* Repositories */,
 				0A66FFFF2B2E5855007D7318 /* iBudget.entitlements */,
 				0A8BE7F92B1E5F9D004A2B00 /* ViewModels */,
 				0A58007E2B0013E400C44A88 /* Views */,
 				0A58006D2B00111F00C44A88 /* Models */,
 				0A5800302B00059C00C44A88 /* iBudgetApp.swift */,
-				0A5800342B00059E00C44A88 /* Assets.xcassets */,
 				0A5800362B00059E00C44A88 /* Preview Content */,
+				0A6600092B3C70A7007D7318 /* Assets.xcassets */,
 			);
 			path = iBudget;
 			sourceTree = "<group>";
@@ -346,8 +348,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A66000A2B3C70A7007D7318 /* Assets.xcassets in Resources */,
 				0A5800382B00059E00C44A88 /* Preview Assets.xcassets in Resources */,
-				0A5800352B00059E00C44A88 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,7 +567,10 @@
 				DEVELOPMENT_TEAM = Y3CC3XVFU3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "";
+				INFOPLIST_FILE = iBudget/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -598,7 +603,10 @@
 				DEVELOPMENT_TEAM = Y3CC3XVFU3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "";
+				INFOPLIST_FILE = iBudget/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

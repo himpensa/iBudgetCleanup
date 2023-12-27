@@ -50,7 +50,6 @@ struct ImportTransactionsFromQIF: View {
     
     func importQIF(from fileURL: URL){
             fileURL.startAccessingSecurityScopedResource()
-
         
         let qifString = try? String(contentsOf: fileURL)
 
