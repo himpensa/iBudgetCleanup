@@ -9,19 +9,19 @@ struct ContentView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-           ListAccountsView()
-                .tabItem {
-                    Text("Accounts")
-                    Image(systemName: "questionmark.circle.fill")
-                }
-                .tag(0)
             ListTransactionsView()
                 .tabItem {
                     Text("Transactions")
                     Image(systemName: "calendar")
                 }
-                .tag(1)
+                .tag(0)
             
+            ListAccountsView()
+                .tabItem {
+                    Text("Accounts")
+                    Image(systemName: "questionmark.circle.fill")
+                }
+                .tag(1)
             ListPayeesView()
                 .tabItem {
                     Text("Payees")
@@ -84,7 +84,8 @@ struct SettingsView: View {
     @Query var tags: [Tag]
     @Query var payees: [Payee]
     @Query var budgets: [Budget]
-    
+    @State private var newCurrencies: [Currency] = [] // Nouvelle collection pour stocker les nouvelles devises
+
     var body: some View {
         VStack {
             Button("Exporter les données") {
@@ -117,14 +118,19 @@ struct SettingsView: View {
                         }
                     }
                     for currency in decodedData.currencies {
+                        if !currencyExistsInCurrentImport(currency: currency) {
+
                         if !currencyExistsInCurrentData(currency: currency) {
+                            newCurrencies.append(currency)
                             modelContext.insert(currency)
                             print("Currency ajouté: \(currency.currency_alphabetic_code)")
                         } else {
                             print("Currency déjà présent: \(currency.currency_alphabetic_code)")
                         }
+                    } else {
+                        print("Currency déjà présent: \(currency.currency_alphabetic_code)")
                     }
-                    
+                }
                 }
             }
         }
@@ -135,6 +141,7 @@ struct SettingsView: View {
 
 
 extension SettingsView {
+
     private func categoryExistsInCurrentData(category: Category) -> Bool {
         return categories.contains(where: { $0.category_id == category.category_id })
     }
@@ -145,8 +152,12 @@ extension SettingsView {
         return transactions.contains(where: { $0.transaction_id == transaction.transaction_id })
     }
     private func currencyExistsInCurrentData(currency: Currency) -> Bool {
-        return currencies.contains(where: { $0.currency_id == currency.currency_id })
+        return currencies.contains(where: { $0.currency_numeric_code == currency.currency_numeric_code })
     }
+    private func currencyExistsInCurrentImport(currency: Currency) -> Bool {
+        return newCurrencies.contains(where: { $0.currency_numeric_code == currency.currency_numeric_code })
+    }
+
     private func payeeExistsInCurrentData(payee: Payee) -> Bool {
         return payees.contains(where: { $0.payee_id == payee.payee_id })
     }

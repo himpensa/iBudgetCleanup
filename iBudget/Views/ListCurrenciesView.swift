@@ -10,7 +10,7 @@ import SwiftData
 
 struct ListCurrenciesView: View {
     @Environment(\.modelContext) var modelContext
-    @Query var currencies: [Currency]
+    @Query(sort: \Currency.currency_name)  var currencies: [Currency]
     @State private var path = [Currency]()
 
 
@@ -51,10 +51,4 @@ struct ListCurrenciesView: View {
             modelContext.delete(currency)
         }
     }
-}
-
-
-
-#Preview {
-    ListCurrenciesView()
 }

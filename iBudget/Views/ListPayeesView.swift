@@ -13,7 +13,8 @@ struct ListPayeesView: View {
     @Query var payees: [Payee]
     @State private var path = [Payee]()
 
-
+    
+    
     var body: some View {
         NavigationStack(path: $path) {
             List {
