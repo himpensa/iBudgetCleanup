@@ -42,16 +42,3 @@ struct EditAccountView: View {
         .navigationTitle("Edit Account")
         .navigationBarTitleDisplayMode(.inline)    }
 }
-
-#Preview {
-    do {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: Account.self, configurations: config)
-
-        let example = Account()
-        return EditAccountView(account: example)
-            .modelContainer(container)
-    } catch {
-        fatalError("Failed to create model container.")
-    }
-}

@@ -11,19 +11,25 @@ struct ImportTransactionsFromQIF: View {
     @Query var accounts: [Account]  // Récupérer la liste des comptes
     @State private var selectedCurrency: Currency?
     @State private var selectedAccount: Account?
+    @State private var currencyLoaded = false
     
-
+    
     var body: some View {
         VStack {
             
             Section(header: Text("Amount and Currency")) {
+                if currencyLoaded{
                 Picker("Currency", selection: $selectedCurrency) {
                     ForEach(currencies, id: \.self) { currency in
                         Text(currency.currency_name).tag(currency as Currency?)
                     }
                 }
             }
-           
+                else{
+                    Text("Currency Loading")
+                }
+                    
+            }
 
             Section(header: Text("Account")) {
                 Picker("Account", selection: $selectedAccount) {
@@ -45,6 +51,19 @@ struct ImportTransactionsFromQIF: View {
             case .failure(let error):
                 print("Erreur lors de l'importation du fichier : \(error)")
             }
+        }
+        .onAppear{
+            loadCurrencies()
+        }
+    }
+    
+    func loadCurrencies(){
+        DispatchQueue.main.async {
+            if let defaultCurrency = currencies.first(where: { $0.currency_is_default }) {
+                self.selectedCurrency = defaultCurrency
+                print("ok")
+            }
+            self.currencyLoaded = true
         }
     }
     

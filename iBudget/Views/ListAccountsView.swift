@@ -14,7 +14,6 @@ struct ListAccountsView: View {
     @Query var accounts: [Account]
     @State private var path = [Account]()
 
-
     var body: some View {
         NavigationStack(path: $path) {
             List {
@@ -39,12 +38,13 @@ struct ListAccountsView: View {
         }
     }
     
-
-    
     func addAccount() {
         let account = Account()
         modelContext.insert(account)
-        path = [account]
+        // Vérifier si l'account n'est pas déjà dans path avant de l'ajouter
+            if !path.contains(account) {
+                path = [account]
+            }
     }
     
     func deleteAccount(_ indexSet: IndexSet) {
@@ -53,10 +53,4 @@ struct ListAccountsView: View {
             modelContext.delete(account)
         }
     }
-}
-
-
-
-#Preview {
-    ListCategoriesView()
 }
