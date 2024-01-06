@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A0047A02B49618700C54DC9 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A00479F2B49618700C54DC9 /* MenuView.swift */; };
+		0A0047A22B49919E00C54DC9 /* ImportJSONView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0047A12B49919E00C54DC9 /* ImportJSONView.swift */; };
 		0A5800312B00059C00C44A88 /* iBudgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5800302B00059C00C44A88 /* iBudgetApp.swift */; };
 		0A5800382B00059E00C44A88 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A5800372B00059E00C44A88 /* Preview Assets.xcassets */; };
 		0A5800422B00059E00C44A88 /* iBudgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5800412B00059E00C44A88 /* iBudgetTests.swift */; };
@@ -59,6 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A00479F2B49618700C54DC9 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		0A0047A12B49919E00C54DC9 /* ImportJSONView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportJSONView.swift; sourceTree = "<group>"; };
 		0A58002D2B00059C00C44A88 /* iBudget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBudget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A5800302B00059C00C44A88 /* iBudgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iBudgetApp.swift; sourceTree = "<group>"; };
 		0A5800372B00059E00C44A88 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -218,6 +222,8 @@
 				0A8BE7F72B1D2B8C004A2B00 /* EditTagView.swift */,
 				0A8BE7E32B1BB543004A2B00 /* EditTransactionView.swift */,
 				0A6600062B30ED90007D7318 /* JSONData.swift */,
+				0A00479F2B49618700C54DC9 /* MenuView.swift */,
+				0A0047A12B49919E00C54DC9 /* ImportJSONView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -381,6 +387,7 @@
 				0A66FFF92B2CABAD007D7318 /* ImportTransactionsFromQIF.swift in Sources */,
 				0A8BE7EA2B1CEC6E004A2B00 /* EditCurrencyView.swift in Sources */,
 				0A8BE7DE2B1B23F6004A2B00 /* ContentView.swift in Sources */,
+				0A0047A02B49618700C54DC9 /* MenuView.swift in Sources */,
 				0A5800772B00111F00C44A88 /* Currency.swift in Sources */,
 				0A8BE7E22B1B2B22004A2B00 /* ListCategoriesView.swift in Sources */,
 				0A8BE7F42B1D2B65004A2B00 /* EditPayeeView.swift in Sources */,
@@ -388,6 +395,7 @@
 				0A58007C2B00111F00C44A88 /* Tag.swift in Sources */,
 				0A58007A2B00111F00C44A88 /* Budget.swift in Sources */,
 				0A5800782B00111F00C44A88 /* Payee.swift in Sources */,
+				0A0047A22B49919E00C54DC9 /* ImportJSONView.swift in Sources */,
 				0A5800312B00059C00C44A88 /* iBudgetApp.swift in Sources */,
 				0A8BE7E82B1CEB5F004A2B00 /* ListCurrenciesView.swift in Sources */,
 				0A8BE7FD2B1E6A11004A2B00 /* EditAccountView.swift in Sources */,

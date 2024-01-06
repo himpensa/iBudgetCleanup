@@ -24,24 +24,49 @@ struct EditCurrencyView: View {
     
     var body: some View {
         Form {
-            TextField("Name", text: $currency.currency_name)
-            TextField("Short Name", text: $currency.currency_alphabetic_code)
-            TextField("Symbol", text: $currency.currency_symbol)
-            TextField("Numeric Code", text: $currency.currency_numeric_code)
-            TextField("Minor Unit", value: $currency.currency_minor_unit, formatter: NumberFormatter())
-            
-
-            Section(header: Text("Is Default")) {
-                           Toggle("Is Default", isOn: $currency.currency_is_default)
-                    .onChange(of: currency.currency_is_default) { newValue in
-                                           if newValue {
-                                               setDefaultCurrency()
-                                           }
-                                       }
+            Section(header: Text("Currency Name")) {
+                TextField("Name", text: $currency.currency_name)
             }
-            
+            Section(header: Text("Codes & Symbols")) {
+                HStack  {
+                    Text("Alphabetic Code")
+                    Spacer()
+                    TextField("Short Name", text: $currency.currency_alphabetic_code)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.trailing)
+                }
+                HStack  {
+                    Text("Numeric Code")
+                    Spacer()
+                    TextField("Numeric Code", text: $currency.currency_numeric_code)                    .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.trailing)
+                }
+                HStack  {
+                    Text("Symbol")
+                    Spacer()
+                    TextField("Symbol", text: $currency.currency_symbol)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.trailing)
+                }
             }
-        
+            Section(header: Text("Codes & Symbols")) {
+                HStack  {
+                    Text("Minor Unit")
+                    Spacer()
+                    TextField("Minor Unit", value: $currency.currency_minor_unit, formatter: NumberFormatter())
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.trailing)
+                }
+                HStack  {
+                    Toggle("Default Currency", isOn: $currency.currency_is_default)
+                        .onChange(of: currency.currency_is_default) { newValue in
+                            if newValue {
+                                setDefaultCurrency()
+                            }
+                        }
+                }
+            }
+        }
         .navigationTitle("Edit Currency")
         .navigationBarTitleDisplayMode(.inline)    }
     
@@ -54,4 +79,15 @@ struct EditCurrencyView: View {
                 }
             }
         }
+}
+
+
+#Preview {
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+      let container = try! ModelContainer(for: Currency.self, configurations: config)
+
+    let sampleCurrency = Currency(currency_name: "US Dollar", currency_symbol: "$", currency_alphabetic_code: "USD", currency_numeric_code: "840", currency_minor_unit: 2, currency_is_default: false)
+
+    return EditCurrencyView(currency: sampleCurrency)
+        .modelContainer(container)
 }
