@@ -192,12 +192,12 @@
 			isa = PBXGroup;
 			children = (
 				0A58006F2B00111F00C44A88 /* Currency.swift */,
+				0A5800752B00111F00C44A88 /* Account.swift */,
 				0A5800702B00111F00C44A88 /* Payee.swift */,
 				0A5800712B00111F00C44A88 /* Category.swift */,
 				0A5800722B00111F00C44A88 /* Budget.swift */,
 				0A5800732B00111F00C44A88 /* Transaction.swift */,
 				0A5800742B00111F00C44A88 /* Tag.swift */,
-				0A5800752B00111F00C44A88 /* Account.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -221,7 +221,6 @@
 				0A8BE7F32B1D2B65004A2B00 /* EditPayeeView.swift */,
 				0A8BE7F72B1D2B8C004A2B00 /* EditTagView.swift */,
 				0A8BE7E32B1BB543004A2B00 /* EditTransactionView.swift */,
-				0A6600062B30ED90007D7318 /* JSONData.swift */,
 				0A00479F2B49618700C54DC9 /* MenuView.swift */,
 				0A0047A12B49919E00C54DC9 /* ImportJSONView.swift */,
 			);
@@ -238,6 +237,7 @@
 		0A8BE7F92B1E5F9D004A2B00 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				0A6600062B30ED90007D7318 /* JSONData.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";

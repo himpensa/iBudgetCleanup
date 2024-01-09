@@ -16,10 +16,10 @@ import SwiftData
     var account_type:String
     var starting_balance: Double
     var is_opened: Bool
-    var is_default: Bool
+    var account_is_default: Bool
     var transactions: [Transaction] = []  // Liste de transactions
     
-    init(account_id: UUID=UUID(), account_name: String="", account_description: String="", account_currency: Currency? = nil, account_type: String="Cash", starting_balance: Double=0, is_opened: Bool=true, is_default: Bool=false, transactions: [Transaction] = []) {
+    init(account_id: UUID=UUID(), account_name: String="", account_description: String="", account_currency: Currency? = nil, account_type: String="Cash", starting_balance: Double=0, is_opened: Bool=true, account_is_default: Bool=false, transactions: [Transaction] = []) {
         self.account_id = account_id
         self.account_name = account_name
         self.account_description = account_description
@@ -27,22 +27,22 @@ import SwiftData
         self.account_type = account_type
         self.starting_balance = starting_balance
         self.is_opened = is_opened
-        self.is_default = is_default
+        self.account_is_default = account_is_default
         self.transactions = transactions
     }
     
     func describe() -> String {
-        return "Account [ID: \(account_id), Name: \(account_name), Description: \( account_description), Currency: \(account_currency?.currency_alphabetic_code), Type: \(account_type), Starting balance: \(starting_balance), is Opened: \(is_opened), is Default: \(is_default)]"
+        return "Account [ID: \(account_id), Name: \(account_name), Description: \( account_description), Currency: \(account_currency?.currency_alphabetic_code), Type: \(account_type), Starting balance: \(starting_balance), is Opened: \(is_opened), is Default: \(account_is_default)]"
     }
     
-    func update(account_name: String, account_description: String, account_currency: Currency, account_type: String, starting_balance: Double,is_opened: Bool, is_default: Bool, transactions: [Transaction]) {
+    func update(account_name: String, account_description: String, account_currency: Currency, account_type: String, starting_balance: Double,is_opened: Bool, account_is_default: Bool, transactions: [Transaction]) {
         self.account_name = account_name
         self.account_description = account_description
         self.account_currency = account_currency
         self.account_type = account_type
         self.starting_balance = starting_balance
         self.is_opened = is_opened
-        self.is_default = is_default
+        self.account_is_default = account_is_default
         self.transactions = transactions
     }
     
@@ -52,6 +52,7 @@ import SwiftData
          try container.encode(account_name, forKey: .account_name)
          try container.encode(starting_balance, forKey: .starting_balance)
         try container.encode(account_currency, forKey: .account_currency)
+        try container.encode(account_is_default, forKey: .account_is_default)
      }
     
     // Implémentation requise de Decodable
@@ -69,7 +70,7 @@ import SwiftData
             }
         account_type = "Cash"
         is_opened = true
-        is_default = false
+        account_is_default = try container.decode(Bool.self, forKey: .account_is_default)
     }
     
     // CodingKeys pour associer les propriétés aux clés du JSON/XML
@@ -78,5 +79,6 @@ import SwiftData
         case account_name
         case starting_balance
         case account_currency
+        case account_is_default
     }
 }

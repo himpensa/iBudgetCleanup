@@ -11,7 +11,6 @@ import SwiftData
 struct EditCurrencyView: View {
     @Bindable var currency: Currency
     @State private var isDefault: Bool = false
-    @State private var showTooltip: Bool = false
     @Query(sort: \Currency.currency_name)  var availableCurrencies: [Currency]
     
     init(currency: Currency) {

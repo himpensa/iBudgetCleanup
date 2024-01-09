@@ -11,7 +11,8 @@ import SwiftData
 struct EditAccountView: View {
     @Bindable var account: Account
     @Query(sort: [SortDescriptor(\Currency.currency_name)]) var currencies: [Currency]
-    
+    @State private var isDefault: Bool = false
+    @Query(sort: \Account.account_name)  var availableAccounts: [Account]
     @State private var selectedCurrency: Currency?
     
     init(account: Account) {
@@ -23,10 +24,6 @@ struct EditAccountView: View {
         Form {
             TextField("Name", text: $account.account_name)
             
-            Section(header: Text("Checkbox")) {
-                           Toggle("Check me", isOn: $account.is_default)
-                       }
-            
             Section(header: Text("Currency")) {
                 Picker("Currency", selection: $selectedCurrency) {
                     ForEach(currencies, id: \.self) { currency in
@@ -37,8 +34,27 @@ struct EditAccountView: View {
             .onChange(of: selectedCurrency) { newValue in
                 account.account_currency = newValue
             }
+            HStack  {
+                Toggle("Default Account", isOn: $account.account_is_default)
+            //        .onChange(of: $account.account_is_default) { newValue in
+              //          if newValue {
+                //            setDefaultAccount()
+                 //       }
+                  // }
             }
+        }
         
         .navigationTitle("Edit Account")
-        .navigationBarTitleDisplayMode(.inline)    }
+        .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    func setDefaultAccount() {
+            for index in availableAccounts.indices {
+                if availableAccounts[index].id == account.id {
+                    availableAccounts[index].account_is_default = true
+                } else {
+                    availableAccounts[index].account_is_default = false
+                }
+            }
+        }
 }
