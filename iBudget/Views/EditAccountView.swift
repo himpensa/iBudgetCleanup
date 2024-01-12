@@ -20,9 +20,15 @@ struct EditAccountView: View {
         self._selectedCurrency = State(initialValue: account.account_currency)
         }
     
+    var isDefaultAccountSet: Bool {
+        availableAccounts.contains(where: { $0.account_is_default && $0.id != account.id })
+    }
+    
     var body: some View {
         Form {
-            TextField("Name", text: $account.account_name)
+            HStack  {
+                TextField("Name", text: $account.account_name)
+            }
             
             Section(header: Text("Currency")) {
                 Picker("Currency", selection: $selectedCurrency) {
@@ -36,11 +42,11 @@ struct EditAccountView: View {
             }
             HStack  {
                 Toggle("Default Account", isOn: $account.account_is_default)
-            //        .onChange(of: $account.account_is_default) { newValue in
-              //          if newValue {
-                //            setDefaultAccount()
-                 //       }
-                  // }
+                    .onChange(of: account.account_is_default) { newValue in
+                        if newValue {
+                            setDefaultAccount()
+                        }
+                   }
             }
         }
         
