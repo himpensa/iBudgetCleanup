@@ -13,12 +13,13 @@ struct ListBudgetsView: View {
     @Query var budgets: [Budget]
     @State private var path = [Budget]()
 
-
     var body: some View {
         NavigationStack(path: $path) {
             List {
                 ForEach(budgets) { budget in
-                    NavigationLink(value: budget) {
+                    NavigationLink(destination:
+                        EditBudgetView(budget: budget)
+                    ) {
                         VStack(alignment: .leading) {
                             Text(budget.budget_name)
                                 .font(.headline)
@@ -26,25 +27,21 @@ struct ListBudgetsView: View {
                     }
                 }
                 .onDelete(perform: deleteBudget)
-
             }
             .navigationTitle("Budgets")
-            .navigationDestination(for: Budget.self, destination: EditBudgetView.init)
 
             .toolbar {
                 Button("Add Budget", systemImage: "plus", action: addBudget)
             }
         }
     }
-    
 
-    
     func addBudget() {
         let budget = Budget()
         modelContext.insert(budget)
         path = [budget]
     }
-    
+
     func deleteBudget(_ indexSet: IndexSet) {
         for index in indexSet {
             let budget = budgets[index]
@@ -53,8 +50,6 @@ struct ListBudgetsView: View {
     }
 }
 
-
-
 #Preview {
-    ListCategoriesView()
+    ListBudgetsView()
 }

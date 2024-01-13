@@ -8,12 +8,7 @@ struct ListTransactionsView: View {
     @State private var path = [Transaction]()
     @State private var lastDate = DateFormatter().date(from: "2020/01/01") ?? Date()
     @State private var selectedAccount: Account? = nil
-
-    init() {
-        let defaultAccount = accounts.first { $0.account_is_default }
-        _selectedAccount = State(initialValue: defaultAccount)
-    }
-
+    
     private var groupedTransactions: [Date: [Transaction]] {
         var groupedDict = Dictionary(grouping: filteredTransactions, by: { Calendar.current.startOfDay(for: $0.transaction_date) })
         groupedDict = groupedDict.mapValues { $0.sorted(by: { $0.transaction_date > $1.transaction_date }) }
@@ -48,17 +43,17 @@ struct ListTransactionsView: View {
             .toolbar {
                 Button("Add Transaction", systemImage: "plus", action: addTransaction)
             }
+            .onAppear {
+                let defaultAccount = accounts.first { $0.account_is_default }
+            }
         }
     }
-
 
     private func header(for index: Int) -> Text {
         let transaction = filteredTransactions[index]
         print(dateFormatted(transaction.transaction_date))
         return Text(dateFormatted(transaction.transaction_date))
     }
-
-  
 
     private var accountPicker: some View {
         Picker(selection: $selectedAccount, label: Text("Account")) {
@@ -74,7 +69,6 @@ struct ListTransactionsView: View {
         }
     }
 
-    // Formater la date pour l'affichage dans l'en-tête de la section
     private func dateFormatted(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
@@ -82,26 +76,31 @@ struct ListTransactionsView: View {
         return dateFormatter.string(from: date)
     }
 
-    func addTransaction() {
+    private func addTransaction() {
         let transaction = Transaction()
         transaction.transaction_account = selectedAccount
         modelContext.insert(transaction)
         path = [transaction]
     }
 
-    func deleteTransaction(_ indexSet: IndexSet) {
+    private func deleteTransaction(_ indexSet: IndexSet) {
         for index in indexSet {
             let transaction = transactions[index]
             modelContext.delete(transaction)
         }
     }
 
-    // Calcul des transactions filtrées en fonction du compte sélectionné
     private var filteredTransactions: [Transaction] {
         if let selectedAccount = selectedAccount {
             return transactions.filter { $0.transaction_account == selectedAccount }
         } else {
             return transactions
         }
+    }
+}
+
+struct ListTransactionsView_Previews: PreviewProvider {
+    static var previews: some View {
+        ListTransactionsView()
     }
 }

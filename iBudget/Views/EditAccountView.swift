@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct EditAccountView: View {
+    @Environment(\.modelContext) var modelContext
     @Bindable var account: Account
     @Query(sort: [SortDescriptor(\Currency.currency_name)]) var currencies: [Currency]
     @State private var isDefault: Bool = false

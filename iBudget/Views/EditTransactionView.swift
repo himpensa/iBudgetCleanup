@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct EditTransactionView: View {
+    @Environment(\.modelContext) var modelContext
     @Bindable var transaction: Transaction
     @Query(sort: [SortDescriptor(\Currency.currency_name)]) var currencies: [Currency]
     @Query var accounts: [Account]  // Récupérer la liste des comptes

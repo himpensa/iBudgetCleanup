@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct EditCurrencyView: View {
+    @Environment(\.modelContext) var modelContext
     @Bindable var currency: Currency
     @State private var isDefault: Bool = false
     @Query(sort: \Currency.currency_name)  var availableCurrencies: [Currency]
@@ -48,7 +49,7 @@ struct EditCurrencyView: View {
                         .multilineTextAlignment(.trailing)
                 }
             }
-            Section(header: Text("Codes & Symbols")) {
+            Section(header: Text("Parameters")) {
                 HStack  {
                     Text("Minor Unit")
                     Spacer()

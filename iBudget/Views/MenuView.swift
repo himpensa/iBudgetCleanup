@@ -83,6 +83,19 @@ struct MenuView: View {
                     .cornerRadius(10)
                     .shadow(radius: 5)
                 }
+                    NavigationLink(destination: ListBudgetsView()) {
+                        VStack {
+                            Image(systemName: "car.fill")
+                                .font(.largeTitle)
+                            Text("Budgets")
+                                .font(.headline)
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 100)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .shadow(radius: 5)
+                    }
                     NavigationLink(destination: ImportTransactionsFromQIF()) {
                         VStack {
                             Image(systemName: "doc.circle")

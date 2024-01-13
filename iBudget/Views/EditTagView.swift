@@ -14,8 +14,10 @@ struct EditTagView: View {
     
     var body: some View {
         Form {
-            TextField("Name", text: $tag.tag_name)
+            Section(header: Text("Tag Name")) {
+                TextField("Name", text: $tag.tag_name)
             }
+        }
         
         .navigationTitle("Edit Tag")
         .navigationBarTitleDisplayMode(.inline)    }
@@ -26,7 +28,7 @@ struct EditTagView: View {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: Tag.self, configurations: config)
 
-        let example = Tag(tag_name: "Example Destination")
+        let example = Tag(tag_name: "Example Tag")
         return EditTagView(tag: example)
             .modelContainer(container)
     } catch {

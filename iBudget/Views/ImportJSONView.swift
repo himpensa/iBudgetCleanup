@@ -22,11 +22,14 @@ struct SettingsView: View {
     @State private var newCategories: [Category] = []
     @State private var newAccounts: [Account] = [] // Nouvelle collection pour stocker les nouvelles devises
     @State private var newTransactions: [Transaction] = [] // Nouvelle collection pour stocker les nouvelles devises
+    @State private var newTags: [Tag] = [] // Nouvelle collection pour stocker les nouvelles devises
+    @State private var newBudgets: [Budget] = [] // Nouvelle collection pour stocker les nouvelles devises
+    @State private var newPayees: [Payee] = [] // Nouvelle collection pour stocker les nouvelles devises
 
     var body: some View {
         VStack {
             Button("Exporter les données") {
-                let dataContainer = DataContainer(categories: categories, accounts: accounts, currencies: currencies, transactions: transactions)
+                let dataContainer = DataContainer(categories: categories, accounts: accounts, currencies: currencies, transactions: transactions, budgets: budgets, tags: tags, payees: payees)
                 encodeData(data: dataContainer, toFile: "data.json")
             }
             Button("Importer les données") {
@@ -83,6 +86,45 @@ struct SettingsView: View {
                             print("Currency déjà présent: \(currency.currency_alphabetic_code)")
                         }
                     }
+                    for budget in decodedData.budgets {
+                        if !budgetExistsInCurrentImport(budget: budget) {
+                            if !budgetExistsInCurrentData(budget: budget) {
+                                newBudgets.append(budget)
+                                modelContext.insert(budget)
+                                print("Budget ajouté: \(budget.budget_name)")
+                            } else {
+                                print("Budget déjà présent: \(budget.budget_name)")
+                            }
+                        } else {
+                            print("Budget déjà présent: \(budget.budget_name)")
+                        }
+                    }
+                    for tag in decodedData.tags {
+                        if !tagExistsInCurrentImport(tag: tag) {
+                            if !tagExistsInCurrentData(tag: tag) {
+                                newTags.append(tag)
+                                modelContext.insert(tag)
+                                print("Tag ajouté: \(tag.tag_name)")
+                            } else {
+                                print("Tag déjà présent: \(tag.tag_name)")
+                            }
+                        } else {
+                            print("Tag déjà présent: \(tag.tag_name)")
+                        }
+                    }
+                    for payee in decodedData.payees {
+                        if !payeeExistsInCurrentImport(payee: payee) {
+                            if !payeeExistsInCurrentData(payee: payee) {
+                                newPayees.append(payee)
+                                modelContext.insert(payee)
+                                print("Payee ajouté: \(payee.payee_name)")
+                            } else {
+                                print("Payee déjà présent: \(payee.payee_name)")
+                            }
+                        } else {
+                            print("Payee déjà présent: \(payee.payee_name)")
+                        }
+                    }
                 }
             }
         }
@@ -126,5 +168,14 @@ extension SettingsView {
     }
     private func budgetExistsInCurrentData(budget: Budget) -> Bool {
         return budgets.contains(where: { $0.budget_id == budget.budget_id })
+    }
+    private func tagExistsInCurrentImport(tag: Tag) -> Bool {
+        return newTags.contains(where: { $0.tag_name == tag.tag_name })
+    }
+    private func budgetExistsInCurrentImport(budget: Budget) -> Bool {
+        return newBudgets.contains(where: { $0.budget_name == budget.budget_name })
+    }
+    private func payeeExistsInCurrentImport(payee: Payee) -> Bool {
+        return newPayees.contains(where: { $0.payee_id == payee.payee_id })
     }
 }

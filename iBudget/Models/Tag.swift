@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-@Model class Tag {
+@Model class Tag : Codable{
     var tag_id: UUID
     var tag_name: String
 
