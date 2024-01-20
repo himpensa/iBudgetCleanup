@@ -43,9 +43,6 @@ struct ListTransactionsView: View {
             .toolbar {
                 Button("Add Transaction", systemImage: "plus", action: addTransaction)
             }
-            .onAppear {
-                let defaultAccount = accounts.first { $0.account_is_default }
-            }
         }
     }
 
@@ -62,10 +59,7 @@ struct ListTransactionsView: View {
             }
         }
         .onAppear {
-            // Sélectionner automatiquement le compte par défaut si selectedAccount est nil
-            if selectedAccount == nil {
                 selectedAccount = accounts.first { $0.account_is_default }
-            }
         }
     }
 
@@ -85,6 +79,7 @@ struct ListTransactionsView: View {
 
     private func deleteTransaction(_ indexSet: IndexSet) {
         for index in indexSet {
+            print(transactions[index].transaction_details)
             let transaction = transactions[index]
             modelContext.delete(transaction)
         }

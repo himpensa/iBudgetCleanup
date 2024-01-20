@@ -32,11 +32,7 @@ struct EditAccountView: View {
             }
             
             Section(header: Text("Currency")) {
-                Picker("Currency", selection: $selectedCurrency) {
-                    ForEach(currencies, id: \.self) { currency in
-                        Text(currency.currency_name).tag(currency as Currency?)
-                    }
-                }
+                currencyPicker
             }
             .onChange(of: selectedCurrency) { newValue in
                 account.account_currency = newValue
@@ -64,4 +60,26 @@ struct EditAccountView: View {
                 }
             }
         }
+    
+    private var currencyPicker: some View {
+        Picker(selection: $selectedCurrency, label: Text("Currency")) {
+            if currencies.isEmpty {
+                // If currencies array is empty, show a default value
+                Text("Sélectionnez").tag(nil as Currency?)
+            } else {
+                ForEach(currencies, id: \.self) { currency in
+                    Text(currency.currency_name).tag(currency as Currency?)
+                }
+            }
+        }
+        .onAppear {
+            if currencies.isEmpty {
+                // If currencies array is empty, set the default value to nil
+                selectedCurrency = nil
+            } else {
+                selectedCurrency = currencies.first { $0.currency_is_default }
+            }
+        }
+    }
+
 }
