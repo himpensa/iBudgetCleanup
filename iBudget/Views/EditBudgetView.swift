@@ -5,7 +5,8 @@ struct EditBudgetView: View {
     @Environment(\.modelContext) var modelContext
     @Bindable var budget: Budget
     @State private var selectedDate = Date()
-    @State private var selectedFrequency: Frequency = .month // Default to Month
+    @State private var selectedNumber: Int
+    @State private var selectedInterval: Interval = .month // Default to Month
     @State private var selectedCategories: [Category] = []
     @Query var categories: [Category]
 
@@ -13,6 +14,8 @@ struct EditBudgetView: View {
     init(budget : Budget) {
         self._budget = Bindable(budget)
         self._selectedCategories = State(initialValue: budget.categories)
+        self._selectedInterval = State(initialValue: budget.budget_interval)
+        self._selectedNumber = State(initialValue: budget.budget_number)
         }
     
     var body: some View {
@@ -20,17 +23,39 @@ struct EditBudgetView: View {
             Section(header: Text("Budget Title")) {
                 TextField("Name", text: $budget.budget_name)
             }
-            Section(header: Text("Frequency")) {
-                Picker("Frequency", selection: $selectedFrequency) {
-                    ForEach(Frequency.allCases, id: \.self) { frequency in
-                        Text(frequency.rawValue)
+            Section(header: Text("Recurrence")) {
+                HStack {
+                    Picker("Tous les ", selection: $selectedNumber) {
+                                    ForEach(1 ..< 11) { number in
+                                        Text("\(number)")
+                                    }
+                                }
+                    Picker("", selection: $selectedInterval) {
+                        ForEach(Interval.allCases, id: \.self) { interval in
+                            Text(interval.rawValue)
+                        }
                     }
                 }
-                .pickerStyle(SegmentedPickerStyle())
             }
-            Section(header: Text("End Date")) {
+     /*       .onChange(of: selectedInterval) { newInterval, _ in
+                budget.budget_interval = newInterval
+                budget.calculateEndDate(startDate: budget.budget_start_date, interval: selectedInterval, numberOfRecurrences: selectedNumber+1)
+            }
+            .onChange(of: selectedNumber) { newRecurrence, _ in
+                budget.budget_number = newRecurrence+1
+                budget.calculateEndDate(startDate: budget.budget_start_date, interval: selectedInterval, numberOfRecurrences: selectedNumber+1)
+            }
+       */
+            Section(header: Text("Start Date")) {
+                VStack {
+                DatePicker("Start Date", selection: $budget.budget_start_date, displayedComponents: [.date])
+            /*            .onChange(of: budget.budget_start_date) { _ in
+                            budget.calculateEndDate(startDate: budget.budget_start_date, interval: selectedInterval, numberOfRecurrences: selectedNumber+1)
+                        }*/
                 DatePicker("End Date", selection: $budget.budget_end_date, displayedComponents: [.date])
             }
+        }
+        
             Section(header: Text("Budget Limit")) {
                 TextField("Limit", value: $budget.budget_limit, formatter: NumberFormatter())
                     .keyboardType(.numberPad)
@@ -46,9 +71,8 @@ struct EditBudgetView: View {
                             }
                         }
                     }
-                    .onChange(of: selectedCategories) { newValue in
-                        print(newValue)
-                        budget.categories = selectedCategories
+                    .onChange(of: selectedCategories) { newValue, _ in
+                        budget.categories = newValue
                     }
                 }
             }
@@ -75,19 +99,14 @@ struct MultipleSelectionRow: View {
     }
 }
 
-enum Frequency: String, CaseIterable {
-    case day = "Jour"
-    case week = "Semaine"
-    case month = "Mois"
-    case year = "Année"
-}
+
 
 struct EditBudgetView_Previews: PreviewProvider {
     static var previews: some View {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try! ModelContainer(for: Budget.self, configurations: config)
 
-        let sampleBudget = Budget(budget_name: "Crédit immobilier", budget_end_date: .now, budget_limit: 1326)
+        let sampleBudget = Budget(budget_name: "Crédit immobilier", budget_end_date: .now, budget_limit: 1326, budget_number: 2 , budget_interval: .day)
 
         return EditBudgetView(budget: sampleBudget)
             .modelContainer(container)

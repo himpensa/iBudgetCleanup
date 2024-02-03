@@ -83,6 +83,20 @@ struct MenuView: View {
                     .cornerRadius(10)
                     .shadow(radius: 5)
                 }
+                    
+                    NavigationLink(destination: ListEnveloppesView()) {
+                        VStack {
+                            Image(systemName: "mail.fill")
+                                .font(.largeTitle)
+                            Text("Enveloppes")
+                                .font(.headline)
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 100)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .shadow(radius: 5)
+                    }
 
                     NavigationLink(destination: ImportTransactionsViews()) {
                         VStack {

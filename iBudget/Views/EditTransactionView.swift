@@ -40,7 +40,7 @@ struct EditTransactionView: View {
             Section(header: Text("Amount and Currency")) {
                 TextField("Amount", text: $amountText)
                     .keyboardType(.decimalPad)
-                    .onChange(of: amountText) { newValue in
+                    .onChange(of: amountText) { newValue, _ in
                         print("New Value:", newValue)
                         if let amount = Double(newValue) {
                             print("Amount:", amount)
@@ -56,7 +56,7 @@ struct EditTransactionView: View {
                         Text(currency.currency_name).tag(currency as Currency?)
                     }
                 }
-                .onChange(of: selectedCurrency) { newValue in
+                .onChange(of: selectedCurrency) { newValue, _ in
                     transaction.transaction_currency = newValue
                 }
             }
@@ -68,7 +68,7 @@ struct EditTransactionView: View {
                     }
                 }
             }
-            .onChange(of: selectedAccount) { newAccount in
+            .onChange(of: selectedAccount) { newAccount, _ in
                 transaction.transaction_account = newAccount
             }
             
@@ -79,7 +79,7 @@ struct EditTransactionView: View {
                     }
                 }
             }
-            .onChange(of: selectedCategory) { newCategory in
+            .onChange(of: selectedCategory) { newCategory, _ in
                 transaction.transaction_category = newCategory
             }
         }

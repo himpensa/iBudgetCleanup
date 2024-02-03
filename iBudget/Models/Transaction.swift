@@ -29,7 +29,7 @@ import SwiftData
     }
     
     func description() -> String {
-      return "Transaction [Details: \(transaction_details), Amount: \(transaction_amount), Currency: \(transaction_currency), Account: \(transaction_account), Category: \(transaction_category)]"
+        return "Transaction [Details: \(transaction_details), Amount: \(transaction_amount), Currency: \(String(describing: transaction_currency)), Account: \(String(describing: transaction_account)), Category: \(String(describing: transaction_category))]"
     }
 
     func update(transaction_details: String, transaction_date: Date, transaction_amount: Double, transaction_currency: Currency, transaction_account: Account, transaction_category: Category) {

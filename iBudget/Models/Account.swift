@@ -32,7 +32,7 @@ import SwiftData
     }
     
     func describe() -> String {
-        return "Account [ID: \(account_id), Name: \(account_name), Description: \( account_description), Currency: \(account_currency?.currency_alphabetic_code), Type: \(account_type), Starting balance: \(starting_balance), is Opened: \(is_opened), is Default: \(account_is_default)]"
+        return "Account [ID: \(account_id), Name: \(account_name), Description: \( String(describing: account_description)), Currency: \(String(describing: account_currency?.currency_alphabetic_code)), Type: \(account_type), Starting balance: \(starting_balance), is Opened: \(is_opened), is Default: \(account_is_default)]"
     }
     
     func update(account_name: String, account_description: String, account_currency: Currency, account_type: String, starting_balance: Double,is_opened: Bool, account_is_default: Bool, transactions: [Transaction]) {

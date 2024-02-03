@@ -59,7 +59,7 @@ struct EditCurrencyView: View {
                 }
                 HStack  {
                     Toggle("Default Currency", isOn: $currency.currency_is_default)
-                        .onChange(of: currency.currency_is_default) { newValue in
+                        .onChange(of: currency.currency_is_default) { newValue, _ in
                             if newValue {
                                 setDefaultCurrency()
                             }

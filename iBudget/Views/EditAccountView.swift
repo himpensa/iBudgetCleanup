@@ -34,12 +34,12 @@ struct EditAccountView: View {
             Section(header: Text("Currency")) {
                 currencyPicker
             }
-            .onChange(of: selectedCurrency) { newValue in
+            .onChange(of: selectedCurrency) { newValue, _ in
                 account.account_currency = newValue
             }
             HStack  {
                 Toggle("Default Account", isOn: $account.account_is_default)
-                    .onChange(of: account.account_is_default) { newValue in
+                    .onChange(of: account.account_is_default) { newValue, _ in
                         if newValue {
                             setDefaultAccount()
                         }

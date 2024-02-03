@@ -14,7 +14,7 @@ class QIFDataContainerImporter {
     func importQIF(from fileURL: URL, selectedCurrency: Currency?, selectedAccount: Account?) {
         fileURL.startAccessingSecurityScopedResource()
 
-        let qifString = try? String(contentsOf: fileURL)
+      //  let qifString = try? String(contentsOf: fileURL)
 
         do  {
             let qifString = try String(contentsOf: fileURL)

@@ -32,7 +32,7 @@ struct EditPayeeView: View {
                     }
                 }
             }
-            .onChange(of: selectedCategory) { newCategory in
+            .onChange(of: selectedCategory) { newCategory, _ in
                 payee.payee_default_category = newCategory
             }
             }

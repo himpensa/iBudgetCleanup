@@ -14,8 +14,8 @@ import SwiftData
 struct iBudgetApp: App {
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            ContentView()
         }
-        .modelContainer(for: [Account.self, Category.self, Transaction.self, Currency.self, Payee.self, Tag.self, Budget.self])
+        .modelContainer(for: [ Account.self, Category.self, Transaction.self, Currency.self, Payee.self, Tag.self, Budget.self])
     }
 }

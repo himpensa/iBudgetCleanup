@@ -1,42 +1,41 @@
 import SwiftUI
 
-struct MainTabView: View {
-
-    @State private var selectedTab = 0
-
+struct ContentView: View {
     var body: some View {
-        TabView(selection: $selectedTab) {
-                ListTransactionsView()
-                .tabItem {
-                    Text("Reports")
-                    Image(systemName: "chart.line.uptrend.xyaxis.circle")
+        TabView
+        {
+            NavigationView {
+                ScrollView {
+                    VStack {
+                        GroupBox(label: Label("Budget", systemImage: "dollarsign")) {
+                            BudgetTileView()
+                        }
+                        GroupBox(label: Label("Répartition des Dépenses", systemImage: "chart.pie")) {                           
+                            CategoriesTileView()
+                        }
+                        GroupBox(label: Label("Planned Expense", systemImage: "calendar")) {
+                            PlannedTileView()
+                        }
+                        GroupBox(label: Label("Last Transactions", systemImage: "dollarsign")) {
+                          TransactionsTileView()
+                        }
+                    }
+                    .padding()
                 }
-                .tag(1)
-            ListTransactionsView()
-                .tabItem {
-                    Text("Transactions")
-                    Image(systemName: "arrow.left.arrow.right.circle")
-                }
-                .tag(2)
-            ListTransactionsView()
-                .tabItem {
-                    Text("Planned")
-                    Image(systemName: "calendar.circle")
-                }
-                .tag(3)
-            ListBudgetsView()
-                .tabItem {
-                    Text("Budgets")
-                    Image(systemName: "gauge.low")
-                }
-                .tag(4)
+            }
+            .tabItem {
+                Label("Summary", systemImage: "house")
+            }.tag(1)
+            
+            
             MenuView()
                 .tabItem {
-                    Text("More")
-                    Image(systemName: "ellipsis")
-                }
-                .tag(5)
+                    Label("More", systemImage: "ellipsis")
+                }.tag(2)
         }
     }
 }
 
+#Preview {
+    ContentView()
+}

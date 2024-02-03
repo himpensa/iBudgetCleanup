@@ -101,8 +101,6 @@ struct ImportTransactionsViews: View {
         
         // Note: You may want to update your data source instead of printing here
         for transaction in qifImporter.transactions {
-            print("inside")
-            print(transaction.transaction_account?.account_name)
             modelContext.insert(transaction)
             path = [transaction]
         }
@@ -115,8 +113,6 @@ struct ImportTransactionsViews: View {
         
         // Note: You may want to update your data source instead of printing here
         for transaction in qifImporter.transactions {
-            print("inside")
-            print(transaction.transaction_account?.account_name)
             modelContext.insert(transaction)
             path = [transaction]
         }
