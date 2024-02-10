@@ -41,8 +41,7 @@ struct SimpleBudgetLineChartItemView: View {
                 .cornerRadius(10)
             }
         }
-        .padding(.horizontal)
-        .frame(width: .infinity, height: 100)
+        .frame(maxWidth: .infinity, maxHeight: 60)
         .chartXAxis(.hidden)
         .chartYAxis(.hidden)
     }
@@ -52,7 +51,9 @@ struct SimpleBudgetLineChartItemView: View {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
     let container = try! ModelContainer(for: Budget.self, configurations: config)
 
-    let sampleBudget = Budget(budget_name: "Crédit immobilier", budget_end_date: .now, budget_limit: 1326, budget_interval: .month)
+    let sampleCategory = Category(category_name: "Restaurant", category_icon: "questionmark.circle", parentID: nil)
+
+    let sampleBudget = Budget(budget_name: "Crédit immobilier", budget_end_date: .now, budget_limit: 1326, budget_interval: .month, budget_category: sampleCategory)
 
     return SimpleBudgetLineChartItemView(budget: sampleBudget)
         .modelContainer(container)

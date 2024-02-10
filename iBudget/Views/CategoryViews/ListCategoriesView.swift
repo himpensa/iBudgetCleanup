@@ -6,6 +6,8 @@ struct ListCategoriesView: View {
     @Environment(\.modelContext) var modelContext
     @Query var categories: [Category]
     @State private var path = [Category]()
+    @State private var showingSheet = false
+
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -31,9 +33,14 @@ struct ListCategoriesView: View {
             }
             .navigationTitle("Categories")
             .navigationDestination(for: Category.self, destination: EditCategoryView.init)
-
             .toolbar {
-                Button("Add Category", systemImage: "plus", action: addCategory)
+                Button("Add Category", systemImage: "plus") {
+                    showingSheet.toggle()
+                }
+                .sheet(isPresented: $showingSheet) {
+                    NewCategoryView(showingSheet: $showingSheet)
+                        .presentationDetents([.medium, .large])
+                }
             }
         }
     }

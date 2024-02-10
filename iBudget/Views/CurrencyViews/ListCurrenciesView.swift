@@ -12,6 +12,7 @@ struct ListCurrenciesView: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \Currency.currency_name)  var currencies: [Currency]
     @State private var path = [Currency]()
+    @State private var showingSheet = false
 
 
     var body: some View {
@@ -32,19 +33,16 @@ struct ListCurrenciesView: View {
             .navigationDestination(for: Currency.self, destination: EditCurrencyView.init)
 
             .toolbar {
-                Button("Add Currency", systemImage: "plus", action: addCurrency)
+                Button("Add Currency", systemImage: "plus") {
+                    showingSheet.toggle()
+                }
+                .sheet(isPresented: $showingSheet) {
+                    NewCurrencyView(showingSheet: $showingSheet)
+                }
             }
         }
     }
-    
-
-    
-    func addCurrency() {
-        let currency = Currency()
-        modelContext.insert(currency)
-        path = [currency]
-    }
-    
+        
     func deleteCurrency(_ indexSet: IndexSet) {
         for index in indexSet {
             let currency = currencies[index]

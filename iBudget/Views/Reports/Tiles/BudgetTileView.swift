@@ -48,6 +48,8 @@ struct BudgetTileView: View {
 }
 struct BudgetTileView_Previews: PreviewProvider {
     static var previews: some View {
-        BudgetTileView()
-    }
+        GroupBox() {
+            BudgetTileView()
+        }
+        .groupBoxStyle(PersoGroupBoxStyle(destination: ListBudgetsView()))    }
 }

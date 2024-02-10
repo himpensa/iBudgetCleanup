@@ -28,10 +28,33 @@ struct SettingsView: View {
 
     var body: some View {
         VStack {
+            Button("Effacer les données") {
+                do {
+                    try modelContext.delete(model: Currency.self)
+                    try modelContext.delete(model: Category.self)
+                    try modelContext.delete(model: Account.self)
+                    try modelContext.delete(model: Transaction.self)
+                    try modelContext.delete(model: Tag.self)
+                    try modelContext.delete(model: Budget.self)
+                    try modelContext.delete(model: Payee.self)
+                } catch {
+                    print("Failed to clear all Country and City data.")
+                }
+            }
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 100)
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+            .shadow(radius: 5)
             Button("Exporter les données") {
                 let dataContainer = DataContainer(categories: categories, accounts: accounts, currencies: currencies, transactions: transactions, budgets: budgets, tags: tags, payees: payees)
                 encodeData(data: dataContainer, toFile: "data.json")
             }
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 100)
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+            .shadow(radius: 5)
             Button("Importer les données") {
                 if let decodedData: DataContainer = decodeData(fromFile: "data.json") {
                     for category in decodedData.categories {
@@ -127,6 +150,11 @@ struct SettingsView: View {
                     }
                 }
             }
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 100)
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+            .shadow(radius: 5)
         }
     }
 }

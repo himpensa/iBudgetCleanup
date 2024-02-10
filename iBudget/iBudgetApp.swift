@@ -12,6 +12,8 @@ import SwiftData
 
 @main
 struct iBudgetApp: App {
+        @StateObject private var appSettings = AppInit()
+        
     var body: some Scene {
         WindowGroup {
             ContentView()

@@ -11,7 +11,7 @@ import SwiftData
 struct EditCurrencyView: View {
     @Environment(\.modelContext) var modelContext
     @Bindable var currency: Currency
-    @State private var isDefault: Bool = false
+ 
     @Query(sort: \Currency.currency_name)  var availableCurrencies: [Currency]
     
     init(currency: Currency) {
@@ -38,7 +38,8 @@ struct EditCurrencyView: View {
                 HStack  {
                     Text("Numeric Code")
                     Spacer()
-                    TextField("Numeric Code", text: $currency.currency_numeric_code)                    .foregroundStyle(.secondary)
+                    TextField("Numeric Code", text: $currency.currency_numeric_code)                    
+                        .foregroundStyle(.secondary)
                         .multilineTextAlignment(.trailing)
                 }
                 HStack  {
@@ -60,9 +61,7 @@ struct EditCurrencyView: View {
                 HStack  {
                     Toggle("Default Currency", isOn: $currency.currency_is_default)
                         .onChange(of: currency.currency_is_default) { newValue, _ in
-                            if newValue {
-                                setDefaultCurrency()
-                            }
+                            setDefaultCurrency()
                         }
                 }
             }
@@ -72,15 +71,15 @@ struct EditCurrencyView: View {
     
     func setDefaultCurrency() {
             for index in availableCurrencies.indices {
-                if availableCurrencies[index].id == currency.id {
-                    availableCurrencies[index].currency_is_default = true
-                } else {
-                    availableCurrencies[index].currency_is_default = false
-                }
+                if currency.currency_is_default {
+                    if availableCurrencies[index].currency_id == currency.currency_id {
+                    } else {
+                        availableCurrencies[index].currency_is_default = false
+                    }
             }
         }
+    }
 }
-
 
 #Preview {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)

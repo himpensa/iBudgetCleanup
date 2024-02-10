@@ -16,7 +16,7 @@ struct EditTransactionView: View {
     @Query var categories: [Category]  // Récupérer la liste des comptes
     @State private var selectedCurrency: Currency?
     @State private var selectedAccount: Account?
-    @State private var selectedCategory: Category?
+    @State private var selectedCategory: Category
     @State private var amountValue: Double = 0 // Ajout d'une variable pour gérer la saisie de montant
 
     @State private var amountText: String = ""
@@ -57,7 +57,7 @@ struct EditTransactionView: View {
                     }
                 }
                 .onChange(of: selectedCurrency) { newValue, _ in
-                    transaction.transaction_currency = newValue
+                    transaction.transaction_currency = selectedCurrency
                 }
             }
 
@@ -69,7 +69,7 @@ struct EditTransactionView: View {
                 }
             }
             .onChange(of: selectedAccount) { newAccount, _ in
-                transaction.transaction_account = newAccount
+                transaction.transaction_account = selectedAccount
             }
             
             Section(header: Text("Category")) {
@@ -80,7 +80,8 @@ struct EditTransactionView: View {
                 }
             }
             .onChange(of: selectedCategory) { newCategory, _ in
-                transaction.transaction_category = newCategory
+                print(selectedCategory)
+                transaction.transaction_category = selectedCategory
             }
         }
         .navigationTitle("Edit Transaction")

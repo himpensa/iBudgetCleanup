@@ -11,7 +11,7 @@ import Charts
 struct SimpleTransactionsPerCategoryView: View {
     let data = [
         (name: "Cachapa", sales: 9631),
-        (name: "Crêpe", sales: 6959),
+        (name: "Crêpe", sales: 959),
         (name: "Injera", sales: 4891),
         (name: "Jian Bing", sales: 2506),
         (name: "American", sales: 1777),
@@ -24,7 +24,7 @@ struct SimpleTransactionsPerCategoryView: View {
             SectorMark(
                 angle: .value("Value", sales),
                 innerRadius: .ratio(0.618),
-                outerRadius: .inset(10),
+                //outerRadius: .inset(10),
                 angularInset: 1
             )
             .cornerRadius(4)

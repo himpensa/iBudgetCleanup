@@ -16,9 +16,9 @@ import SwiftData
     var transaction_amount: Double
     var transaction_currency: Currency?
     var transaction_account: Account?
-    var transaction_category: Category?
+    var transaction_category: Category
 
-    init(transaction_id: UUID = UUID(), transaction_details: String = "", transaction_date: Date = .now, transaction_amount: Double=0, transaction_currency: Currency? = nil, transaction_account: Account? = nil, transaction_category: Category? = nil) {
+    init(transaction_id: UUID = UUID(), transaction_details: String = "", transaction_date: Date = .now, transaction_amount: Double=0, transaction_currency: Currency? = nil, transaction_account: Account? = nil, transaction_category: Category) {
         self.transaction_id = transaction_id
         self.transaction_details = transaction_details
         self.transaction_date = transaction_date
@@ -72,7 +72,7 @@ import SwiftData
         if let category = try? container.decode(Category.self, forKey: .transaction_category) {
             transaction_category = category
         } else {
-            transaction_category = nil // Si la valeur est null dans le JSON, assignez nil à account_currency
+            transaction_category = Category()
         }
     }
     

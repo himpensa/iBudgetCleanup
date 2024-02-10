@@ -12,13 +12,10 @@ struct EditAccountView: View {
     @Environment(\.modelContext) var modelContext
     @Bindable var account: Account
     @Query(sort: [SortDescriptor(\Currency.currency_name)]) var currencies: [Currency]
-    @State private var isDefault: Bool = false
     @Query(sort: \Account.account_name)  var availableAccounts: [Account]
-    @State private var selectedCurrency: Currency?
     
     init(account: Account) {
         self._account = Bindable(account)
-        self._selectedCurrency = State(initialValue: account.account_currency)
         }
     
     var isDefaultAccountSet: Bool {
@@ -34,15 +31,13 @@ struct EditAccountView: View {
             Section(header: Text("Currency")) {
                 currencyPicker
             }
-            .onChange(of: selectedCurrency) { newValue, _ in
+            .onChange(of: account.account_currency) { newValue, _ in
                 account.account_currency = newValue
             }
             HStack  {
                 Toggle("Default Account", isOn: $account.account_is_default)
                     .onChange(of: account.account_is_default) { newValue, _ in
-                        if newValue {
                             setDefaultAccount()
-                        }
                    }
             }
         }
@@ -53,16 +48,17 @@ struct EditAccountView: View {
     
     func setDefaultAccount() {
             for index in availableAccounts.indices {
-                if availableAccounts[index].id == account.id {
-                    availableAccounts[index].account_is_default = true
-                } else {
-                    availableAccounts[index].account_is_default = false
-                }
+                if account.account_is_default {
+                    if availableAccounts[index].account_id == account.account_id {
+                    } else {
+                        availableAccounts[index].account_is_default = false
+                    }
             }
         }
+    }
     
     private var currencyPicker: some View {
-        Picker(selection: $selectedCurrency, label: Text("Currency")) {
+        Picker(selection: $account.account_currency, label: Text("Currency")) {
             if currencies.isEmpty {
                 // If currencies array is empty, show a default value
                 Text("Sélectionnez").tag(nil as Currency?)
@@ -70,14 +66,6 @@ struct EditAccountView: View {
                 ForEach(currencies, id: \.self) { currency in
                     Text(currency.currency_name).tag(currency as Currency?)
                 }
-            }
-        }
-        .onAppear {
-            if currencies.isEmpty {
-                // If currencies array is empty, set the default value to nil
-                selectedCurrency = nil
-            } else {
-                selectedCurrency = currencies.first { $0.currency_is_default }
             }
         }
     }

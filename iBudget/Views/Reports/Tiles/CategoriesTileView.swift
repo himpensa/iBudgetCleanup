@@ -5,7 +5,7 @@ struct CategoriesTileView: View {
     var body: some View {
                     HStack {
                         DonutChart()
-                            .frame(width: 100, height: 100)
+                            .frame(width: 110, height: 110)
                         
                         VStack(alignment: .leading) {
                             ExpenseRow(category: "Alimentation", percentage: 10)
@@ -29,13 +29,13 @@ struct DonutChart: View {
     var body: some View {
         Chart(data, id: \.category) { category, amount in
             SectorMark(
-                angle: .value("Value", amount),
+                angle: .value("Value",amount),
                 innerRadius: .ratio(0.618),
                 outerRadius: .inset(10),
                 angularInset: 1
             )
             .cornerRadius(4)
-            .foregroundStyle(by: .value("Product category", category))
+            .foregroundStyle(by: .value("Category", category))
             
         }.chartLegend(.hidden)
 
@@ -53,7 +53,7 @@ struct ExpenseRow: View {
             
             Spacer()
             
-            Text("%\(percentage, specifier: "%.2f")")
+            Text("\(percentage, specifier: "%.f")%")
                 .foregroundColor(.secondary)
         }
         .padding(.vertical, 1)

@@ -10,8 +10,10 @@ struct ImportTransactionsViews: View {
     @State private var path = [Transaction]()
     @Query(sort: [SortDescriptor(\Currency.currency_name)]) var currencies: [Currency]
     @Query var accounts: [Account]  // Récupérer la liste des comptes
+    @Query var categories: [Category]  // Récupérer la liste des comptes
     @State private var selectedCurrency: Currency?
     @State private var selectedAccount: Account?
+    @State private var defaultCategory: Category?
    
     
     var body: some View {
@@ -20,14 +22,24 @@ struct ImportTransactionsViews: View {
             Section(header: Text("Currency for the import")) {
                 currencyPicker
             }
+            Spacer()
             Section(header: Text("Account for the import")) {
                 accountPicker
             }
+            Spacer()
+            
+            Section(header: Text("Category for the import")) {
+                categoryPicker
+            }
+            Spacer()
+            
             Section(header: Text("Type of Import")) {
                 Button("Importer un fichier QIF") {
                     isQIFFilePickerPresented = true
                 }
             }
+            Spacer()
+            
             Section(header: Text("Type of Import")) {
                 Button("Importer un fichier OFX") {
                     isOFXFilePickerPresented = true
@@ -42,7 +54,7 @@ struct ImportTransactionsViews: View {
                 print("Erreur lors de l'importation du fichier : \(error)")
             }
         }
-        .fileImporter(isPresented: $isOFXFilePickerPresented, allowedContentTypes: [UTType(filenameExtension: "ofx")!]) { result in
+        .fileImporter(isPresented: $isOFXFilePickerPresented, allowedContentTypes: [UTType(filenameExtension: "qif")!]) { result in
                    switch result {
                    case .success(let url):
                        importOFX(from: url)
@@ -50,6 +62,27 @@ struct ImportTransactionsViews: View {
                        print("Erreur lors de l'importation du fichier OFX : \(error)")
                    }
                }
+    }
+
+    private var categoryPicker: some View {
+        Picker(selection: $defaultCategory, label: Text("Category")) {
+            if categories.isEmpty {
+                // If categories array is empty, show a default value
+                Text("Sélectionnez").tag(nil as Category?)
+            } else {
+                ForEach(categories, id: \.self) { category in
+                    Text(category.category_name).tag(category as Category?)
+                }
+            }
+        }
+        .onAppear {
+            if categories.isEmpty {
+                // If categories array is empty, set the default value to nil
+                defaultCategory = nil
+            } else {
+                defaultCategory = categories.first { $0.category_name == "Empty" }
+            }
+        }
     }
     
     private var currencyPicker: some View {
@@ -85,11 +118,11 @@ struct ImportTransactionsViews: View {
             }
         }
         .onAppear {
-            if currencies.isEmpty {
-                // If currencies array is empty, set the default value to nil
-                selectedCurrency = nil
+            if accounts.isEmpty {
+                // If accounts array is empty, set the default value to nil
+                selectedAccount = nil
             } else {
-                selectedCurrency = currencies.first { $0.currency_is_default }
+                selectedAccount = accounts.first { $0.account_is_default }
             }
         }
     }
@@ -97,7 +130,7 @@ struct ImportTransactionsViews: View {
     func importQIF(from fileURL: URL){
         let qifImporter = QIFDataContainerImporter()
        
-        qifImporter.importQIF(from: fileURL, selectedCurrency: selectedCurrency, selectedAccount: selectedAccount)
+        qifImporter.importQIF(from: fileURL, selectedCurrency: selectedCurrency, selectedAccount: selectedAccount, defaultCategory: defaultCategory)
         
         // Note: You may want to update your data source instead of printing here
         for transaction in qifImporter.transactions {
@@ -109,7 +142,7 @@ struct ImportTransactionsViews: View {
     func importOFX(from fileURL: URL){
         let qifImporter = QIFDataContainerImporter()
        
-        qifImporter.importQIF(from: fileURL, selectedCurrency: selectedCurrency, selectedAccount: selectedAccount)
+        qifImporter.importQIF(from: fileURL, selectedCurrency: selectedCurrency, selectedAccount: selectedAccount, defaultCategory: defaultCategory)
         
         // Note: You may want to update your data source instead of printing here
         for transaction in qifImporter.transactions {

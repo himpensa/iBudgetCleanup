@@ -13,6 +13,7 @@ struct ListAccountsView: View {
     @Environment(\.modelContext) var modelContext
     @Query var accounts: [Account]
     @State private var path = [Account]()
+    @State private var showingSheet = false
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -33,7 +34,12 @@ struct ListAccountsView: View {
             .navigationDestination(for: Account.self, destination: EditAccountView.init)
 
             .toolbar {
-                Button("Add Account", systemImage: "plus", action: addAccount)
+                Button("Add Accounts", systemImage: "plus") {
+                    showingSheet.toggle()
+                }
+                .sheet(isPresented: $showingSheet) {
+                    NewAccountView(showingSheet: $showingSheet)
+                }
             }
         }
     }

@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
+import SwiftData
 
 class QIFDataContainerImporter {
     var transactions: [Transaction] = []
 
-
-    func importQIF(from fileURL: URL, selectedCurrency: Currency?, selectedAccount: Account?) {
+    func importQIF(from fileURL: URL, selectedCurrency: Currency?, selectedAccount: Account?, defaultCategory: Category?) {
         fileURL.startAccessingSecurityScopedResource()
 
       //  let qifString = try? String(contentsOf: fileURL)
@@ -36,12 +37,13 @@ class QIFDataContainerImporter {
                 } else if line == "^" {
                     if let date = date, let amount = amount, let description = description {
                         print(description)
-                        let transaction = Transaction(transaction_details: description, transaction_date: date, transaction_amount: amount, transaction_currency: selectedCurrency,transaction_account: selectedAccount,transaction_category: nil)
+                        let transaction = Transaction(transaction_details: description, transaction_date: date, transaction_amount: amount, transaction_currency: selectedCurrency,transaction_account: selectedAccount,transaction_category: defaultCategory ?? Category())
                         transactions.append(transaction)
                     }
                     date = nil
                     amount = nil
                     description = nil
+                    print(defaultCategory?.category_name)
                     print(transactions.first?.transaction_details)
                 }
             }
