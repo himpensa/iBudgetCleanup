@@ -11,17 +11,6 @@ import Charts
 struct CategoriesChart: View {
     var dataTransactions : [Transaction] = []
     
-    private var coffeeSales = [
-        (name: "Americano", count: 120.0),
-        (name: "Cappuccino", count: 234),
-        (name: "Espresso", count: 62),
-        (name: "Latte", count: 625),
-        (name: "Mocha", count: 320),
-        (name: "Affogato", count: 50)
-    ]
-    
-    
-    
     @State private var selectedCount: Int?
     @State private var selectedSector: String?
     
@@ -36,8 +25,6 @@ struct CategoriesChart: View {
         return categoryAmounts
     }
 
-   
-
     
     init(transactions : [Transaction]) {
         self.dataTransactions = transactions
@@ -49,8 +36,9 @@ struct CategoriesChart: View {
                 ForEach(categoryTransactions, id: \.name) { category in
                     SectorMark(
                         angle: .value("Cup", category.amount),
-                        innerRadius: .ratio(0.65),
-                        angularInset: 2.0
+                        innerRadius: .ratio(0.4),
+                        outerRadius: .inset(10),
+                        angularInset: 1
                     )
                     .foregroundStyle(by: .value("Type", category.name))
                     .cornerRadius(10.0)
@@ -82,7 +70,7 @@ struct CategoriesChart: View {
      
         var accumulatedCount = 0
      
-        let coffee = coffeeSales.first { (_, count) in
+        let coffee = categoryTransactions.first { (_, count) in
             accumulatedCount += Int(count)
             return value <= accumulatedCount
         }

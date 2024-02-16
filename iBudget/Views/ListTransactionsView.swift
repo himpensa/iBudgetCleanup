@@ -71,8 +71,16 @@ struct ListTransactionsView: View {
     }
 }
 
-struct ListTransactionsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ListTransactionsView()
-    }
+#Preview {
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: Category.self, Transaction.self, configurations: config)
+
+    let sampleCategory = Category(category_name: "Restaurant", category_icon: "questionmark.circle", parentID: nil)
+    let sampleAccount = Account(account_name: "Courant", account_description: "test", account_currency: nil, account_type: "Cash", starting_balance: 0, is_opened: true, account_is_default: false, transactions: [])
+    let sampleTransaction =  Transaction(transaction_details: "dfgfg", transaction_date: .now, transaction_amount: 0, transaction_currency: nil, transaction_account: sampleAccount, transaction_category: sampleCategory)
+       
+    container.mainContext.insert(sampleTransaction)
+
+    return ListTransactionsView()
+        .modelContainer(container)
 }

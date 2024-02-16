@@ -30,11 +30,11 @@ struct DonutChart: View {
         Chart(data, id: \.category) { category, amount in
             SectorMark(
                 angle: .value("Value",amount),
-                innerRadius: .ratio(0.618),
+                innerRadius: .ratio(0.4),
                 outerRadius: .inset(10),
                 angularInset: 1
             )
-            .cornerRadius(4)
+            .cornerRadius(10)
             .foregroundStyle(by: .value("Category", category))
             
         }.chartLegend(.hidden)
