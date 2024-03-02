@@ -17,7 +17,7 @@ struct ListTransactionsView: View {
                         NavigationLink(destination: EditTransactionView(transaction: transaction)) {
                         VStack {
                             HStack {
-                                Image(systemName: transaction.transaction_category.category_icon)
+                                Image(systemName: transaction.transaction_category!.category_icon)
                                 Text(transaction.transaction_details)
                                     .font(.headline)
                                 Spacer()

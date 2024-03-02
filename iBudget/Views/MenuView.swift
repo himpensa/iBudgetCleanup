@@ -97,8 +97,22 @@ struct MenuView: View {
                         .cornerRadius(10)
                         .shadow(radius: 5)
                     }
-                        
+                    
                     NavigationLink(destination: SettingsView()) {
+                        VStack {
+                            Image(systemName: "gear")
+                                .font(.largeTitle)
+                            Text("Settings")
+                                .font(.headline)
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 100)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .shadow(radius: 5)
+                    }
+                    
+                    NavigationLink(destination: NewTransactionView()) {
                         VStack {
                             Image(systemName: "gear")
                                 .font(.largeTitle)

@@ -15,7 +15,7 @@ struct CategoriesChart: View {
     @State private var selectedSector: String?
     
     private var categoryTransactions: [(name: String, amount: Double)] {
-        let groupedDict = Dictionary(grouping: dataTransactions, by: { $0.transaction_category.category_name })
+        let groupedDict = Dictionary(grouping: dataTransactions, by: { $0.transaction_category!.category_name })
         let categoryAmounts = groupedDict.map { (name, transactions) in
             let totalAmount = transactions.reduce(0) { $0 + $1.transaction_amount }
             let roundedAmount = totalAmount.rounded(toPlaces: 2) // Arrondir à deux chiffres après la virgule

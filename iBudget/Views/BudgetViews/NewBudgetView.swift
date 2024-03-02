@@ -13,6 +13,8 @@ struct NewBudgetView: View {
     @Environment(\.modelContext) var modelContext
     @Query var categories: [Category]
     @Binding var showingSheet: Bool
+    @State private var showingConfirmationAlert = false
+
         
     @State private var budget_title: String = ""
     @State private var budget_start_date: Date=Date()
@@ -64,13 +66,22 @@ struct NewBudgetView: View {
                 }
             }
             .navigationBarTitle(Text("New Budget"), displayMode: .inline)
-            .navigationBarItems(trailing: Button(action: {
-                print("test")
+            .navigationBarItems(leading: Button(action: {
+                showingConfirmationAlert = true
+            }) {
+                Text("Cancel").foregroundColor(.red)
+                    .alert(isPresented: $showingConfirmationAlert) {
+                        Alert(title: Text("Are you sure?"), message: Text("Your changes will not be saved."), primaryButton: .default(Text("Yes")) {
+                            dismiss()
+                        }, secondaryButton: .cancel(Text("No")))
+                    }
+            }, trailing: Button(action: {
+                print("Saved")
                 addBudget()
                 dismiss()
-                            }) {
-                                Text("Save").bold()
-                            })
+            }) {
+                Text("Save").bold()
+            })
         }
     }
         
@@ -107,6 +118,9 @@ struct NewBudgetView: View {
         let budget = Budget(budget_name: budget_title, budget_start_date: budget_start_date, budget_end_date: budget_end_date, budget_limit: 0, budget_number: 1, budget_interval: .month, budget_category: budget_category)
         
         modelContext.insert(budget)
+        
+        budget.budget_category = budget_category
+
     }
     
     

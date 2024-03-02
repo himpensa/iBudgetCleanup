@@ -29,7 +29,7 @@ struct SimpleListTransactions: View {
                             NavigationLink(destination: EditTransactionView(transaction: transaction)) {
                                 VStack(alignment: .leading) {
                                     HStack {
-                                        Image(systemName: transaction.transaction_category.category_icon)
+                                        Image(systemName: transaction.transaction_category!.category_icon)
                                         Text(transaction.transaction_details)
                                         Spacer()
                                         Text(String(format: "%.2f", transaction.transaction_amount))

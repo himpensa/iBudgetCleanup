@@ -31,7 +31,7 @@ struct SimpleListTransactionsFromList: View {
                                 NavigationLink(destination: EditTransactionView(transaction: transaction)) {
                                     VStack(alignment: .leading) {
                                         HStack {
-                                            Image(systemName: transaction.transaction_category.category_icon ?? "questionmark.circle")
+                                            Image(systemName: transaction.transaction_category?.category_icon ?? "questionmark.circle")
                                             Text(transaction.transaction_details)
                                             Spacer()
                                             Text(String(format: "%.2f", transaction.transaction_amount))

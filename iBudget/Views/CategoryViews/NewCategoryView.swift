@@ -12,7 +12,8 @@ struct NewCategoryView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
     @Binding var showingSheet: Bool
-    
+    @State private var showingConfirmationAlert = false
+
     @State private var categoryIcon = String()
     @State private var categoryName = String()
     
@@ -400,13 +401,22 @@ struct NewCategoryView: View {
 
             }
             .navigationBarTitle(Text("New Category"), displayMode: .inline)
-            .navigationBarItems(trailing: Button(action: {
-                print("test")
+            .navigationBarItems(leading: Button(action: {
+                showingConfirmationAlert = true
+            }) {
+                Text("Cancel").foregroundColor(.red)
+                    .alert(isPresented: $showingConfirmationAlert) {
+                        Alert(title: Text("Are you sure?"), message: Text("Your changes will not be saved."), primaryButton: .default(Text("Yes")) {
+                            dismiss()
+                        }, secondaryButton: .cancel(Text("No")))
+                    }
+            }, trailing: Button(action: {
+                print("Saved")
                 addCategory()
                 dismiss()
-                            }) {
-                                Text("Save").bold()
-                            })
+            }) {
+                Text("Save").bold()
+            })
         }
     }
     

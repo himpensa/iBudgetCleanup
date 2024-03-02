@@ -47,6 +47,8 @@
 		0A8BE7FB2B1E69FE004A2B00 /* ListAccountsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7FA2B1E69FE004A2B00 /* ListAccountsView.swift */; };
 		0A8BE7FD2B1E6A11004A2B00 /* EditAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BE7FC2B1E6A11004A2B00 /* EditAccountView.swift */; };
 		0A957C152B245EA200BB4155 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 0A957C142B245EA200BB4155 /* XMLCoder */; };
+		0ABD976C2B93188300FA34D2 /* NewPayeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD976B2B93188300FA34D2 /* NewPayeeView.swift */; };
+		0ABD976E2B93191B00FA34D2 /* NewTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD976D2B93191B00FA34D2 /* NewTransactionView.swift */; };
 		0ABF3CD82B583AE900DF4376 /* EditCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABF3CD72B583AE900DF4376 /* EditCategoryView.swift */; };
 		0ABF3CDB2B5B12BE00DF4376 /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 0ABF3CDA2B5B12BE00DF4376 /* SWXMLHash */; };
 		0ABF3CDF2B5B1C5200DF4376 /* QIFDataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABF3CDE2B5B1C5200DF4376 /* QIFDataContainer.swift */; };
@@ -131,6 +133,8 @@
 		0A8BE7F72B1D2B8C004A2B00 /* EditTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTagView.swift; sourceTree = "<group>"; };
 		0A8BE7FA2B1E69FE004A2B00 /* ListAccountsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAccountsView.swift; sourceTree = "<group>"; };
 		0A8BE7FC2B1E6A11004A2B00 /* EditAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditAccountView.swift; path = ../EditAccountView.swift; sourceTree = "<group>"; };
+		0ABD976B2B93188300FA34D2 /* NewPayeeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPayeeView.swift; sourceTree = "<group>"; };
+		0ABD976D2B93191B00FA34D2 /* NewTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionView.swift; sourceTree = "<group>"; };
 		0ABF3CD72B583AE900DF4376 /* EditCategoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditCategoryView.swift; path = ../EditCategoryView.swift; sourceTree = "<group>"; };
 		0ABF3CDE2B5B1C5200DF4376 /* QIFDataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QIFDataContainer.swift; sourceTree = "<group>"; };
 		0ABF3CE92B618C2300DF4376 /* SimpleBudgetLineChartItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleBudgetLineChartItemView.swift; sourceTree = "<group>"; };
@@ -224,6 +228,9 @@
 		0A157A652B7959A50095B0EB /* PayeeViews */ = {
 			isa = PBXGroup;
 			children = (
+				0A8BE7EB2B1D2916004A2B00 /* ListPayeesView.swift */,
+				0ABD976B2B93188300FA34D2 /* NewPayeeView.swift */,
+				0A8BE7F32B1D2B65004A2B00 /* EditPayeeView.swift */,
 			);
 			path = PayeeViews;
 			sourceTree = "<group>";
@@ -252,7 +259,6 @@
 			isa = PBXGroup;
 			children = (
 				0A6600082B35C3F3007D7318 /* Info.plist */,
-				0A6600002B2F0AD9007D7318 /* Repositories */,
 				0A66FFFF2B2E5855007D7318 /* iBudget.entitlements */,
 				0A8BE7F92B1E5F9D004A2B00 /* ViewModels */,
 				0A58007E2B0013E400C44A88 /* Views */,
@@ -309,31 +315,21 @@
 		0A58007E2B0013E400C44A88 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0ABF3CE42B600EA100DF4376 /* Reports */,
 				0A157A612B794F210095B0EB /* TagViews */,
 				0A157A5C2B76B4260095B0EB /* AccountViews */,
 				0A157A592B76AB9E0095B0EB /* CurrencyViews */,
-				0A157A652B7959A50095B0EB /* PayeeViews */,
 				0A157A552B769B040095B0EB /* CategoryViews */,
 				0AE9DA8B2B74354600ECB44F /* BudgetViews */,
-				0ABF3CE42B600EA100DF4376 /* Reports */,
+				0A157A652B7959A50095B0EB /* PayeeViews */,
+				0AE9DAC32B74E12000ECB44F /* TransactionViews */,
 				0A0047A12B49919E00C54DC9 /* ImportJSONView.swift */,
 				0A66FFF82B2CABAD007D7318 /* ImportTransactionsViews.swift */,
 				0A8BE7DD2B1B23F6004A2B00 /* MainTabView.swift */,
 				0A00479F2B49618700C54DC9 /* MenuView.swift */,
-				0A8BE7EB2B1D2916004A2B00 /* ListPayeesView.swift */,
-				0A8BE7E52B1BB552004A2B00 /* ListTransactionsView.swift */,
-				0A8BE7F32B1D2B65004A2B00 /* EditPayeeView.swift */,
-				0A8BE7E32B1BB543004A2B00 /* EditTransactionView.swift */,
 				0ABF3D152B6FB11D00DF4376 /* UtilsView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		0A6600002B2F0AD9007D7318 /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Repositories;
 			sourceTree = "<group>";
 		};
 		0A8BE7F92B1E5F9D004A2B00 /* ViewModels */ = {
@@ -352,7 +348,6 @@
 			isa = PBXGroup;
 			children = (
 				0AE9DA8C2B74377F00ECB44F /* Tiles */,
-				0AE9DAC32B74E12000ECB44F /* TransactionViews */,
 				0ABF3CE92B618C2300DF4376 /* SimpleBudgetLineChartItemView.swift */,
 				0ABF3CFD2B6D834800DF4376 /* SimpleBarChart.swift */,
 				0AE9DAC82B74EE5C00ECB44F /* CategoriesChart.swift */,
@@ -388,8 +383,11 @@
 		0AE9DAC32B74E12000ECB44F /* TransactionViews */ = {
 			isa = PBXGroup;
 			children = (
+				0A8BE7E52B1BB552004A2B00 /* ListTransactionsView.swift */,
+				0A8BE7E32B1BB543004A2B00 /* EditTransactionView.swift */,
 				0AE9DAC42B74E1B700ECB44F /* SimpleListTransactions.swift */,
 				0AE9DACA2B753B4300ECB44F /* SimpleListTransactionsFromList.swift */,
+				0ABD976D2B93191B00FA34D2 /* NewTransactionView.swift */,
 			);
 			path = TransactionViews;
 			sourceTree = "<group>";
@@ -548,6 +546,7 @@
 				0A8BE7E62B1BB552004A2B00 /* ListTransactionsView.swift in Sources */,
 				0A58007D2B00111F00C44A88 /* Account.swift in Sources */,
 				0A66FFF92B2CABAD007D7318 /* ImportTransactionsViews.swift in Sources */,
+				0ABD976C2B93188300FA34D2 /* NewPayeeView.swift in Sources */,
 				0ABF3D1F2B6FEC9C00DF4376 /* NewBudgetView.swift in Sources */,
 				0A157A582B769E9B0095B0EB /* NewCategoryView.swift in Sources */,
 				0A8BE7EA2B1CEC6E004A2B00 /* EditCurrencyView.swift in Sources */,
@@ -560,6 +559,7 @@
 				0A8BE7F42B1D2B65004A2B00 /* EditPayeeView.swift in Sources */,
 				0ABF3CEC2B61A7C400DF4376 /* ReportsViewModel.swift in Sources */,
 				0A8BE7E42B1BB543004A2B00 /* EditTransactionView.swift in Sources */,
+				0ABD976E2B93191B00FA34D2 /* NewTransactionView.swift in Sources */,
 				0AE9DAC72B74E8E500ECB44F /* ListTransactionCategoryView.swift in Sources */,
 				0AE9DAC52B74E1B700ECB44F /* SimpleListTransactions.swift in Sources */,
 				0A58007C2B00111F00C44A88 /* Tag.swift in Sources */,

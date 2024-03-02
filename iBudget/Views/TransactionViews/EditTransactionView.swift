@@ -16,7 +16,7 @@ struct EditTransactionView: View {
     @Query var categories: [Category]  // Récupérer la liste des comptes
     @State private var selectedCurrency: Currency?
     @State private var selectedAccount: Account?
-    @State private var selectedCategory: Category
+    @State private var selectedCategory: Category?
     @State private var amountValue: Double = 0 // Ajout d'une variable pour gérer la saisie de montant
 
     @State private var amountText: String = ""
@@ -42,7 +42,7 @@ struct EditTransactionView: View {
                     .keyboardType(.decimalPad)
                     .onChange(of: amountText) { newValue, _ in
                         print("New Value:", newValue)
-                        if let amount = Double(newValue) {
+                        if let amount = Double(amountText) {
                             print("Amount:", amount)
                             transaction.transaction_amount = amount
                         } else {
