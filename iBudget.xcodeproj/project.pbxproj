@@ -50,6 +50,10 @@
 		0ABD976C2B93188300FA34D2 /* NewPayeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD976B2B93188300FA34D2 /* NewPayeeView.swift */; };
 		0ABD976E2B93191B00FA34D2 /* NewTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD976D2B93191B00FA34D2 /* NewTransactionView.swift */; };
 		0ABD97702B932DD400FA34D2 /* Planned.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD976F2B932DD400FA34D2 /* Planned.swift */; };
+		0ABD97762B9334A300FA34D2 /* ListPlannedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD97722B9334A300FA34D2 /* ListPlannedView.swift */; };
+		0ABD97772B9334A300FA34D2 /* NewPlannedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD97732B9334A300FA34D2 /* NewPlannedView.swift */; };
+		0ABD97782B9334A300FA34D2 /* EditPlannedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD97742B9334A300FA34D2 /* EditPlannedView.swift */; };
+		0ABD97792B9334A300FA34D2 /* TransactionPlannedTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD97752B9334A300FA34D2 /* TransactionPlannedTest.swift */; };
 		0ABF3CD82B583AE900DF4376 /* EditCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABF3CD72B583AE900DF4376 /* EditCategoryView.swift */; };
 		0ABF3CDB2B5B12BE00DF4376 /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 0ABF3CDA2B5B12BE00DF4376 /* SWXMLHash */; };
 		0ABF3CDF2B5B1C5200DF4376 /* QIFDataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABF3CDE2B5B1C5200DF4376 /* QIFDataContainer.swift */; };
@@ -137,6 +141,10 @@
 		0ABD976B2B93188300FA34D2 /* NewPayeeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPayeeView.swift; sourceTree = "<group>"; };
 		0ABD976D2B93191B00FA34D2 /* NewTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionView.swift; sourceTree = "<group>"; };
 		0ABD976F2B932DD400FA34D2 /* Planned.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Planned.swift; sourceTree = "<group>"; };
+		0ABD97722B9334A300FA34D2 /* ListPlannedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPlannedView.swift; sourceTree = "<group>"; };
+		0ABD97732B9334A300FA34D2 /* NewPlannedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPlannedView.swift; sourceTree = "<group>"; };
+		0ABD97742B9334A300FA34D2 /* EditPlannedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPlannedView.swift; sourceTree = "<group>"; };
+		0ABD97752B9334A300FA34D2 /* TransactionPlannedTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionPlannedTest.swift; sourceTree = "<group>"; };
 		0ABF3CD72B583AE900DF4376 /* EditCategoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditCategoryView.swift; path = ../EditCategoryView.swift; sourceTree = "<group>"; };
 		0ABF3CDE2B5B1C5200DF4376 /* QIFDataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QIFDataContainer.swift; sourceTree = "<group>"; };
 		0ABF3CE92B618C2300DF4376 /* SimpleBudgetLineChartItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleBudgetLineChartItemView.swift; sourceTree = "<group>"; };
@@ -324,6 +332,7 @@
 				0A157A592B76AB9E0095B0EB /* CurrencyViews */,
 				0A157A552B769B040095B0EB /* CategoryViews */,
 				0AE9DA8B2B74354600ECB44F /* BudgetViews */,
+				0ABD97712B9334A300FA34D2 /* PlannedViews */,
 				0A157A652B7959A50095B0EB /* PayeeViews */,
 				0AE9DAC32B74E12000ECB44F /* TransactionViews */,
 				0A0047A12B49919E00C54DC9 /* ImportJSONView.swift */,
@@ -345,6 +354,17 @@
 				0A157A5F2B7763110095B0EB /* AppInit.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		0ABD97712B9334A300FA34D2 /* PlannedViews */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD97722B9334A300FA34D2 /* ListPlannedView.swift */,
+				0ABD97732B9334A300FA34D2 /* NewPlannedView.swift */,
+				0ABD97742B9334A300FA34D2 /* EditPlannedView.swift */,
+				0ABD97752B9334A300FA34D2 /* TransactionPlannedTest.swift */,
+			);
+			path = PlannedViews;
 			sourceTree = "<group>";
 		};
 		0ABF3CE42B600EA100DF4376 /* Reports */ = {
@@ -543,9 +563,11 @@
 				0AE9DA8A2B72CCA900ECB44F /* AccountWeatherTileView.swift in Sources */,
 				0ABF3CF82B65086F00DF4376 /* TransactionsTileView.swift in Sources */,
 				0A8BE7F82B1D2B8C004A2B00 /* EditTagView.swift in Sources */,
+				0ABD97772B9334A300FA34D2 /* NewPlannedView.swift in Sources */,
 				0ABF3D0C2B6EF6D500DF4376 /* Utils.swift in Sources */,
 				0ABF3D002B6D905B00DF4376 /* YearlyBudgetsReportView.swift in Sources */,
 				0A157A672B7E44D90095B0EB /* CollapsableHeader.swift in Sources */,
+				0ABD97782B9334A300FA34D2 /* EditPlannedView.swift in Sources */,
 				0A8BE7E62B1BB552004A2B00 /* ListTransactionsView.swift in Sources */,
 				0A58007D2B00111F00C44A88 /* Account.swift in Sources */,
 				0A66FFF92B2CABAD007D7318 /* ImportTransactionsViews.swift in Sources */,
@@ -570,6 +592,7 @@
 				0A58007A2B00111F00C44A88 /* Budget.swift in Sources */,
 				0A5800782B00111F00C44A88 /* Payee.swift in Sources */,
 				0ABF3CF32B64DA3E00DF4376 /* CategoriesTileView.swift in Sources */,
+				0ABD97762B9334A300FA34D2 /* ListPlannedView.swift in Sources */,
 				0A0047A22B49919E00C54DC9 /* ImportJSONView.swift in Sources */,
 				0A5800312B00059C00C44A88 /* iBudgetApp.swift in Sources */,
 				0ABF3D162B6FB11D00DF4376 /* UtilsView.swift in Sources */,
@@ -579,6 +602,7 @@
 				0ABF3D0A2B6EF3AC00DF4376 /* Frequency.swift in Sources */,
 				0ABD97702B932DD400FA34D2 /* Planned.swift in Sources */,
 				0A157A642B794F800095B0EB /* NewTagView.swift in Sources */,
+				0ABD97792B9334A300FA34D2 /* TransactionPlannedTest.swift in Sources */,
 				0A157A5E2B76B4870095B0EB /* NewAccountView.swift in Sources */,
 				0ABF3CD82B583AE900DF4376 /* EditCategoryView.swift in Sources */,
 				0A6600072B30ED90007D7318 /* JSONData.swift in Sources */,

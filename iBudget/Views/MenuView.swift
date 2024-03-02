@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MenuView: View {
     let gridItems = Array(repeating: GridItem(.flexible(), spacing: 20), count: 2)
+    @State private var showingSheet = false
 
     var body: some View {
         NavigationView {
@@ -114,7 +115,20 @@ struct MenuView: View {
                     
                     NavigationLink(destination: NewTransactionView()) {
                         VStack {
-                            Image(systemName: "gear")
+                            Image(systemName: "dollar")
+                                .font(.largeTitle)
+                            Text("Settings")
+                                .font(.headline)
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 100)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .shadow(radius: 5)
+                    }
+                    NavigationLink(destination: NewPlannedView(showingSheet: $showingSheet)) {
+                        VStack {
+                            Image(systemName: "calendar")
                                 .font(.largeTitle)
                             Text("Settings")
                                 .font(.headline)

@@ -50,3 +50,13 @@ struct ListCurrenciesView: View {
         }
     }
 }
+
+#Preview {
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+      let container = try! ModelContainer(for: Currency.self, configurations: config)
+
+    let sampleCurrency = Currency(currency_name: "US Dollar", currency_symbol: "$", currency_alphabetic_code: "USD", currency_numeric_code: "840", currency_minor_unit: 2, currency_is_default: false)
+
+    return EditCurrencyView(currency: sampleCurrency)
+        .modelContainer(container)
+}

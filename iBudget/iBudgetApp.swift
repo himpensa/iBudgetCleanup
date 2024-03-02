@@ -18,6 +18,6 @@ struct iBudgetApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: [ Account.self, Category.self, Transaction.self, Currency.self, Payee.self, Tag.self, Budget.self])
+        .modelContainer(for: [ Planned.self, Account.self, Category.self, Transaction.self, Currency.self, Payee.self, Tag.self, Budget.self])
     }
 }

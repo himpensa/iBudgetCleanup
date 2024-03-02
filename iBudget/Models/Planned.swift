@@ -16,23 +16,13 @@ import SwiftData
     var planned_amount: Double
     var planned_description: String
     var planned_recurrence: Recurrence
-    var planned_account: Account
-    var planned_currency: Currency
-    var planned_category: Category
+    var planned_account: Account?
+    var planned_currency: Currency?
+    var planned_category: Category?
     var planned_end_date: Date
     var planned_transactions: [Transaction] // Tableau des transactions correspondantes
     
-    init(planned_next_date: Date, planned_end_date: Date, planned_recurrence: Recurrence, planned_amount: Double, planned_description: String, planned_currency: Currency, planned_account: Account, planned_category: Category, planned_transactions: [Transaction] = []) {
-        print("ici")
-        print(planned_next_date)
-        print(planned_end_date)
-        print(planned_recurrence)
-        print(planned_amount)
-        print(planned_description)
-        print(planned_currency.currency_name)
-        print(planned_account.account_name)
-        print(planned_category.category_name)
-
+    init(planned_next_date: Date, planned_end_date: Date, planned_recurrence: Recurrence, planned_amount: Double, planned_description: String, planned_currency: Currency?, planned_account: Account?, planned_category: Category?, planned_transactions: [Transaction] = []) {
         self.planned_next_date = planned_next_date
         self.planned_amount = planned_amount
         self.planned_description = planned_description
@@ -45,7 +35,7 @@ import SwiftData
     }
     
     func description() -> String {
-        return "Planned [Details: \(planned_description), Amount: \(planned_amount), Date: \(planned_amount), Currency: \(String(describing: planned_currency.currency_name)), Account: \(String(describing: planned_account.account_name)), Category: \(String(describing: planned_category.category_name))]"
+        return "Planned [Details: \(planned_description), Amount: \(planned_amount), Date: \(planned_amount), Currency: \(String(describing: planned_currency!.currency_name)), Account: \(String(describing: planned_account!.account_name)), Category: \(String(describing: planned_category!.category_name))]"
     }
     
     // Méthode pour générer les transactions planifiées en fonction de la récurrence
@@ -53,16 +43,16 @@ import SwiftData
         print(planned_next_date)
         print("inside")
         print(planned_end_date)
-        print(planned_currency.currency_name)
-        print(planned_account.account_name)
-        print(planned_category.category_name)
+        print(planned_currency!.currency_name)
+        print(planned_account!.account_name)
+        print(planned_category!.category_name)
         var transactions = [Transaction]()
         var currentDate = planned_next_date
         
         while currentDate <= planned_end_date {
-            print(planned_currency.currency_name)
-            print(planned_account.account_name)
-            print(planned_category.category_name)
+            print(planned_currency!.currency_name)
+            print(planned_account!.account_name)
+            print(planned_category!.category_name)
             let transaction = Transaction(transaction_details: planned_description, transaction_date: currentDate, transaction_amount: planned_amount, transaction_currency: planned_currency, transaction_account: planned_account, transaction_category: planned_category, transaction_completed: false, plannedTransactionID: planned_id)
             print(transaction.description())
             transactions.append(transaction)
