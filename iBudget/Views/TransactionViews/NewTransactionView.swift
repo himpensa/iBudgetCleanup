@@ -123,7 +123,7 @@ struct NewTransactionView: View {
     }
     
     func addTransaction() {
-        let transaction = Transaction(transaction_id: transaction_id, transaction_details: transaction_details, transaction_date: transaction_date, transaction_amount: transaction_amount, transaction_currency: nil, transaction_account: nil, transaction_category: nil)
+        let transaction = Transaction(transaction_id: transaction_id, transaction_details: transaction_details, transaction_date: transaction_date, transaction_amount: transaction_amount, transaction_currency: nil, transaction_account: nil, transaction_category: nil, transaction_completed: true)
         modelContext.insert(transaction)
         transaction.transaction_currency=selectedCurrency
         transaction.transaction_account=selectedAccount

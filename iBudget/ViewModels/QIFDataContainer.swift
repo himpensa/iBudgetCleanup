@@ -37,7 +37,7 @@ class QIFDataContainerImporter {
                 } else if line == "^" {
                     if let date = date, let amount = amount, let description = description {
                         print(description)
-                        let transaction = Transaction(transaction_details: description, transaction_date: date, transaction_amount: amount, transaction_currency: selectedCurrency,transaction_account: selectedAccount,transaction_category: defaultCategory ?? Category())
+                        let transaction = Transaction(transaction_details: description, transaction_date: date, transaction_amount: amount, transaction_currency: selectedCurrency,transaction_account: selectedAccount,transaction_category: defaultCategory ?? Category(), transaction_completed: true)
                         transactions.append(transaction)
                     }
                     date = nil

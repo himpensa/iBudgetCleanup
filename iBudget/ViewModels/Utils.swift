@@ -13,3 +13,12 @@ enum Interval: String, CaseIterable, Codable {
     case month = "Mois"
     case year = "Année"
 }
+
+enum Recurrence: CaseIterable, Codable, Identifiable, Equatable {
+    case never
+    case daily
+    case weekly
+    case monthly
+    case yearly
+    var id: Self { self }
+}

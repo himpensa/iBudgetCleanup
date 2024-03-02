@@ -49,6 +49,7 @@
 		0A957C152B245EA200BB4155 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 0A957C142B245EA200BB4155 /* XMLCoder */; };
 		0ABD976C2B93188300FA34D2 /* NewPayeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD976B2B93188300FA34D2 /* NewPayeeView.swift */; };
 		0ABD976E2B93191B00FA34D2 /* NewTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD976D2B93191B00FA34D2 /* NewTransactionView.swift */; };
+		0ABD97702B932DD400FA34D2 /* Planned.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD976F2B932DD400FA34D2 /* Planned.swift */; };
 		0ABF3CD82B583AE900DF4376 /* EditCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABF3CD72B583AE900DF4376 /* EditCategoryView.swift */; };
 		0ABF3CDB2B5B12BE00DF4376 /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 0ABF3CDA2B5B12BE00DF4376 /* SWXMLHash */; };
 		0ABF3CDF2B5B1C5200DF4376 /* QIFDataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABF3CDE2B5B1C5200DF4376 /* QIFDataContainer.swift */; };
@@ -135,6 +136,7 @@
 		0A8BE7FC2B1E6A11004A2B00 /* EditAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditAccountView.swift; path = ../EditAccountView.swift; sourceTree = "<group>"; };
 		0ABD976B2B93188300FA34D2 /* NewPayeeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPayeeView.swift; sourceTree = "<group>"; };
 		0ABD976D2B93191B00FA34D2 /* NewTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionView.swift; sourceTree = "<group>"; };
+		0ABD976F2B932DD400FA34D2 /* Planned.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Planned.swift; sourceTree = "<group>"; };
 		0ABF3CD72B583AE900DF4376 /* EditCategoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditCategoryView.swift; path = ../EditCategoryView.swift; sourceTree = "<group>"; };
 		0ABF3CDE2B5B1C5200DF4376 /* QIFDataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QIFDataContainer.swift; sourceTree = "<group>"; };
 		0ABF3CE92B618C2300DF4376 /* SimpleBudgetLineChartItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleBudgetLineChartItemView.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 		0A58006D2B00111F00C44A88 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0ABD976F2B932DD400FA34D2 /* Planned.swift */,
 				0A157A682B7E99CD0095B0EB /* Enveloppe.swift */,
 				0A58006F2B00111F00C44A88 /* Currency.swift */,
 				0A5800752B00111F00C44A88 /* Account.swift */,
@@ -574,6 +577,7 @@
 				0ABF3D1C2B6FE46F00DF4376 /* SummaryBudgetReportView.swift in Sources */,
 				0A8BE7FD2B1E6A11004A2B00 /* EditAccountView.swift in Sources */,
 				0ABF3D0A2B6EF3AC00DF4376 /* Frequency.swift in Sources */,
+				0ABD97702B932DD400FA34D2 /* Planned.swift in Sources */,
 				0A157A642B794F800095B0EB /* NewTagView.swift in Sources */,
 				0A157A5E2B76B4870095B0EB /* NewAccountView.swift in Sources */,
 				0ABF3CD82B583AE900DF4376 /* EditCategoryView.swift in Sources */,

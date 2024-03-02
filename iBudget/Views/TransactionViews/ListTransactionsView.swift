@@ -58,7 +58,7 @@ struct ListTransactionsView: View {
     }
 
     private func addTransaction() {
-        let transaction = Transaction(transaction_category: Category())
+        let transaction = Transaction(transaction_category: Category(), transaction_completed: true)
         transaction.transaction_account = selectedAccount
         modelContext.insert(transaction)
     }
@@ -77,7 +77,7 @@ struct ListTransactionsView: View {
 
     let sampleCategory = Category(category_name: "Restaurant", category_icon: "questionmark.circle", parentID: nil)
     let sampleAccount = Account(account_name: "Courant", account_description: "test", account_currency: nil, account_type: "Cash", starting_balance: 0, is_opened: true, account_is_default: false, transactions: [])
-    let sampleTransaction =  Transaction(transaction_details: "dfgfg", transaction_date: .now, transaction_amount: 0, transaction_currency: nil, transaction_account: sampleAccount, transaction_category: sampleCategory)
+    let sampleTransaction =  Transaction(transaction_details: "dfgfg", transaction_date: .now, transaction_amount: 0, transaction_currency: nil, transaction_account: sampleAccount, transaction_category: sampleCategory, transaction_completed: true)
        
     container.mainContext.insert(sampleTransaction)
 
