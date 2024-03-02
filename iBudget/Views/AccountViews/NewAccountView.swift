@@ -14,6 +14,8 @@ struct NewAccountView: View {
     @Binding var showingSheet: Bool
     @Query(sort: \Account.account_name)  var availableAccounts: [Account]
     @Query(sort: [SortDescriptor(\Currency.currency_name)]) var currencies: [Currency]
+    @State private var showingConfirmationAlert = false
+
 
     @State private var isDefault: Bool = false
     
@@ -40,41 +42,50 @@ struct NewAccountView: View {
                     HStack  {
                         Toggle("Default Account", isOn: $account_is_default)
                             .onChange(of: account_is_default) { newValue, _ in
-                                if newValue {
-                                    setDefaultAccount()
-                                }
                            }
                     }
                 }
                     .navigationBarTitle(Text("New Account"), displayMode: .inline)
-                    .navigationBarItems(trailing: Button(action: {
-                        print("test")
+                    .navigationBarItems(leading: Button(action: {
+                        showingConfirmationAlert = true
+                    }) {
+                        Text("Cancel").foregroundColor(.red)
+                            .alert(isPresented: $showingConfirmationAlert) {
+                                Alert(title: Text("Are you sure?"), message: Text("Your changes will not be saved."), primaryButton: .default(Text("Yes")) {
+                                    dismiss()
+                                }, secondaryButton: .cancel(Text("No")))
+                            }
+                    }, trailing: Button(action: {
+                        print("Saved")
                         addAccount()
                         dismiss()
-                                    }) {
-                                        Text("Save").bold()
-                                    })
+                    }) {
+                        Text("Save").bold()
+                    })
                 }
             }
 
-            func addAccount() {
-                print(account_name)
-               
-                let account = Account(account_id: account_id, account_name: account_name, account_description: "account_description", account_currency: account_currency, account_type: "Cash", starting_balance: 0, is_opened: true, account_is_default: account_is_default, transactions: [])
-                
-                modelContext.insert(account)
-            }
-
-        func setDefaultAccount() {
-    /*        for index in availableCurrencies.indices {
-                if availableCurrencies[index].id == currency_id {
-                    availableCurrencies[index].currency_is_default = true
-                } else {
-                    availableCurrencies[index].currency_is_default = false
-                }
-            }*/
-            print("todo")
+    func addAccount() {
+        guard let selectedCurrency = selectedCurrency else {
+            // Handle the case when no currency is selected
+            return
         }
+        print(selectedCurrency.currency_name)
+
+        let account = Account(account_id: account_id, account_name: account_name, account_description: "account_description", account_currency: nil, account_type: "Cash", starting_balance: 0, is_opened: true, account_is_default: account_is_default, transactions: [])
+        
+        modelContext.insert(account)
+        account.account_currency=selectedCurrency
+        if account_is_default {
+            for index in availableAccounts.indices {
+                if availableAccounts[index].account_id == account.account_id {
+                } else {
+                    availableAccounts[index].account_is_default = false
+                }
+            }
+        }
+    }
+
 
     private var currencyPicker: some View {
         Picker(selection: $selectedCurrency, label: Text("Currency")) {

@@ -11,6 +11,7 @@ import SwiftData
 struct NewCurrencyView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
+    @State private var showingConfirmationAlert = false
     @Binding var showingSheet: Bool
     @Query(sort: \Currency.currency_name)  var availableCurrencies: [Currency]
     
@@ -63,41 +64,44 @@ struct NewCurrencyView: View {
                         HStack  {
                             Toggle("Default Currency", isOn: $currency_is_default)
                                 .onChange(of: currency_is_default) { newValue, _ in
-                                    if newValue {
-                                        setDefaultCurrency()
-                                    }
                                 }
                         }
                     }
                 }
                 .navigationBarTitle(Text("New Currency"), displayMode: .inline)
-                .navigationBarItems(trailing: Button(action: {
-                    print("test")
+                .navigationBarItems(leading: Button(action: {
+                    showingConfirmationAlert = true
+                }) {
+                    Text("Cancel").foregroundColor(.red)
+                        .alert(isPresented: $showingConfirmationAlert) {
+                            Alert(title: Text("Are you sure?"), message: Text("Your changes will not be saved."), primaryButton: .default(Text("Yes")) {
+                                dismiss()
+                            }, secondaryButton: .cancel(Text("No")))
+                        }
+                }, trailing: Button(action: {
+                    print("Saved")
                     addCurrency()
                     dismiss()
-                                }) {
-                                    Text("Save").bold()
-                                })
+                }) {
+                    Text("Save").bold()
+                })
             }
         }
 
-        func addCurrency() {
-            print(currency_name)
-           
-            let currency = Currency(currency_name: currency_name, currency_symbol: currency_symbol, currency_alphabetic_code: currency_alphabetic_code, currency_numeric_code: currency_numeric_code, currency_minor_unit: currency_minor_unit, currency_is_default: currency_is_default)
+    func addCurrency() {
+        print(currency_name)
             
-            modelContext.insert(currency)
-        }
-
-    func setDefaultCurrency() {
-/*        for index in availableCurrencies.indices {
-            if availableCurrencies[index].id == currency_id {
-                availableCurrencies[index].currency_is_default = true
-            } else {
-                availableCurrencies[index].currency_is_default = false
+        let currency = Currency(currency_name: currency_name, currency_symbol: currency_symbol, currency_alphabetic_code: currency_alphabetic_code, currency_numeric_code: currency_numeric_code, currency_minor_unit: currency_minor_unit, currency_is_default: currency_is_default)
+        
+        modelContext.insert(currency)
+        if currency_is_default {
+            for index in availableCurrencies.indices {
+                if availableCurrencies[index].currency_id == currency.currency_id {
+                } else {
+                    availableCurrencies[index].currency_is_default = false
+                }
             }
-        }*/
-        print("todo")
+        }
     }
 }
 

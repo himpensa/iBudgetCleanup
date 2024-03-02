@@ -310,9 +310,9 @@
 			isa = PBXGroup;
 			children = (
 				0A157A612B794F210095B0EB /* TagViews */,
-				0A157A652B7959A50095B0EB /* PayeeViews */,
 				0A157A5C2B76B4260095B0EB /* AccountViews */,
 				0A157A592B76AB9E0095B0EB /* CurrencyViews */,
+				0A157A652B7959A50095B0EB /* PayeeViews */,
 				0A157A552B769B040095B0EB /* CategoryViews */,
 				0AE9DA8B2B74354600ECB44F /* BudgetViews */,
 				0ABF3CE42B600EA100DF4376 /* Reports */,
